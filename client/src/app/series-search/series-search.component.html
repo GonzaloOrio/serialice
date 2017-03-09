@@ -1,0 +1,24 @@
+<div *ngIf="seriesService.sharedSearchResult.length > 0">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Search Results</h3>
+        <a (click)="removeSearchResults()" class="btn btn-danger pull-right search-result-remove-btn">
+          <span class="glyphicon glyphicon-remove"></span>
+        </a>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div *ngFor="let serie of seriesService.sharedSearchResult, let i = index">
+          <div class="col-md-2 text-center arrange">
+            <a href="#" routerLink="/serie/{{serie.id}}" >
+              <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+              <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+            </a>
+            <h4 class="text-center">{{serie.title}}</h4>
+            <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,167 @@
+<div class="jumbotron">
+  <div class="container-fluid">
+    <!-- <h1>Serie Discovering Web App</h1>
+    <p>Look for a serie</p> -->
+
+    <form (submit)="searchSeries()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="input-group">
+            <input name="searchQuery" type="text" class="form-control" placeholder="Type serie title (min 3 letters)..." autocomplete="off" [(ngModel)]="searchQuery" (keyup)=autocompleteSearchSeries()>
+            <span class="input-group-btn">
+            <button class="btn btn-default search-button" type="submit">Search</button>
+            </span>
+          </div>
+          <div class="suggestions" *ngIf="autocompleteSeries.length > 0">
+                <ul >
+                    <li *ngFor="let serie of autocompleteSeries" >
+                        <a (click)="select(serie.title)">{{serie.title}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-series-search> </app-series-search>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>Popular Series</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row" *ngIf="popularSeries">
+      <div *ngFor="let serie of popularSeries, let i = index">
+        <div *ngIf="i <= 17" class="col-md-2 text-center">
+          <a href="#" routerLink="/serie/{{serie.id}}" >
+            <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+            <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+          </a>
+          <h4 class="text-center">{{serie.title}}</h4>
+          <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>Top Rated Series</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row" *ngIf="topRatedSeries">
+      <div *ngFor="let serie of topRatedSeries, let i = index">
+        <div *ngIf="i <= 5" class="col-md-2 text-center">
+         <a href="#" routerLink="/serie/{{serie.id}}" >
+          <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+          <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+        </a>
+        <h4 class="text-center">{{serie.title}}</h4>
+        <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>Upcoming Series</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row" *ngIf="upComingSeries">
+      <div *ngFor="let serie of upComingSeries, let i = index">
+        <div *ngIf="i <= 5" class="col-md-2 text-center">
+         <a href="#" routerLink="/serie/{{serie.id}}" >
+          <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+          <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+        </a>
+        <h4 class="text-center">{{serie.title}}</h4>
+        <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>Now Playing Series</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row" *ngIf="nowPlayingSeries">
+      <div *ngFor="let serie of nowPlayingSeries, let i = index">
+        <div *ngIf="i <= 5" class="col-md-2 text-center">
+          <a href="#" routerLink="/serie/{{serie.id}}" >
+            <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+            <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+          </a>
+          <h4 class="text-center">{{serie.title}}</h4>
+          <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<!--
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="#" routerLink="/">{{title}}</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#"> Home <span class="sr-only">(current)</span></a></li>
+      </ul>
+      <form (submit)="searchSeriesNavBar()" action="#" class="navbar-form navbar-left">
+        <div class="form-group">
+          <input name="searchQuery" type="text" class="form-control" placeholder="Serie title (min 3 letters)..." autocomplete="off" [(ngModel)]="searchQueryNavBar" (keyup)=autocompleteSearchSeriesNavBar()>
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+        <div class="suggestions suggestions-nav-bar" *ngIf="autocompleteSeriesNavBar.length > 0">
+          <ul >
+            <li *ngFor="let serie of autocompleteSeriesNavBar" >
+              <a (click)="selectNavBar(serie.title)">{{serie.title}}</a>
+            </li>
+          </ul>
+        </div>
+      </form>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container">
+
+  <router-outlet></router-outlet>
+
+</div>
+ -->
