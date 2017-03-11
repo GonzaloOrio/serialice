@@ -1,8 +1,11 @@
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
-    <div class="navbar-header my-nav">
+    <div *ngIf="!user" class="navbar-header my-nav">
       <a class="navbar-brand" [routerLink]="['/']">Logo</a>
+    </div>
+    <div *ngIf="user" class="navbar-header my-nav">
+      <a class="navbar-brand" [routerLink]="['/home']">Logo</a>
     </div>
     <!-- <ul class="nav navbar-nav">
       <li class="active"><a [routerLink]="['/home']">Home</a></li>

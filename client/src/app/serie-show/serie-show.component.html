@@ -8,18 +8,18 @@
     <div class="panel-body">
       <div class="row">
 
-        <div class="col-md-6">
-          <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}">
+        <div class="col-md-4 col-md-offset-2">
+          <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
           <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <ul class="list-group">
             <li class="list-group-item">
               <strong>Original Title:</strong> {{serie.name}}
             </li>
             <li class="list-group-item">
-              <strong>Seasons:</strong> {{serie.season}}
+              <strong>Seasons:</strong> {{serie.seasons}}
             </li>
             <li class="list-group-item">
               <strong>Overview:</strong> {{serie.overview}}
@@ -63,7 +63,7 @@
                 <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
               </a>
               <h4 class="text-center">{{serie.name}}</h4>
-              <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
+              <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
             </div>
           </div>
         </div>

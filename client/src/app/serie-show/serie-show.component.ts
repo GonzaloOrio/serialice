@@ -36,6 +36,6 @@ export class SerieShowComponent implements OnInit {
       .subscribe(() => {this.seriesService.setSharedSearchResult([]); window.scrollTo(0,0);});
 
     this.seriesService.setSharedSearchResult([]);
+    console.log("the serie object: "+this.serie.seasons);
   }
-
 }

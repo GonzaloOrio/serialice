@@ -1,44 +1,42 @@
-<div class="jumbotron">
-    <!-- <h1>Serie Discovering Web App</h1>
-    <p>Look for a serie</p> -->
 
-    <form (submit)="searchSeries()">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="input-group">
-            <input name="searchQuery" type="text" class="form-control" placeholder="Search Your Serie" [(ngModel)]="searchQuery" (keyup)="autocompleteSearchSeries()">
-            <span class="input-group-btn">
-            <button class="btn btn-default search-button" type="submit">Search</button>
-            </span>
-          </div>
-          <div class="suggestions" *ngIf="autocompleteSeries.length > 0">
-                <ul >
-                    <li *ngFor="let serie of autocompleteSeries" >
-                        <a (click)="select(serie.title)">{{serie.name}}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-      </div>
-    </form>
-</div>
+<section class="search-nav">
+  <form class="form-wrapper cf" (submit)="searchSeries()">
+    <input name="searchQuery" type="text" placeholder="Search Your Series here..." [(ngModel)]="searchQuery" (keyup)="autocompleteSearchSeries()">
+    <button type="submit">Search</button>
+    <div class="suggestions" *ngIf="autocompleteSeries.length > 0">
+      <ul >
+        <li *ngFor="let serie of autocompleteSeries" >
+          <a (click)="select(serie.name)">{{serie.name}}</a>
+        </li>
+      </ul>
+    </div>
+  </form>
+</section>
+
+
+
 
 <app-series-search> </app-series-search>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3>Popular Series</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row" *ngIf="popularSeries">
-      <div *ngFor="let serie of popularSeries, let i = index">
-        <div *ngIf="i < 18" class="col-md-2 text-center">
-          <a routerLink="/serie/{{serie.id}}" >
-            <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-            <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
-          </a>
-          <h4 class="text-center">{{serie.name}}</h4>
-          <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
+<div class="bg-home">
+  <div class="wrap-series">
+    <h3 class="section-home">Popular Series</h3>
+    <div class="panel-body">
+      <div class="row" *ngIf="popularSeries">
+        <div *ngFor="let serie of popularSeries, let i = index">
+          <div *ngIf="i < 20" class="col-md-3 col-sm-4 text-center">
+            <h4 class="text-center serie-name">{{serie.name}}</h4>
+            <a routerLink="/serie/{{serie.id}}" >
+              <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+              <!-- <div class="reflection">
+                  <img src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}" alt="" />
+                  <div class="overlay"></div>
+              </div> -->
+              <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+            </a>
+
+            <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
+          </div>
         </div>
       </div>
     </div>

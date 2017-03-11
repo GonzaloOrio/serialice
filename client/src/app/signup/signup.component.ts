@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSessionService } from "../user-session.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
+  providers: [ UserSessionService ]
 })
 export class SignupComponent implements OnInit {
   user: any;
@@ -13,9 +15,9 @@ export class SignupComponent implements OnInit {
     password: ''
   };
   error: string;
-  privateData: any = '';
+  // privateData: any = '';
 
-  constructor(private session: UserSessionService) { }
+  constructor(private session: UserSessionService, private router: Router) { }
 
   ngOnInit() {
     // this.session.isLoggedIn()
@@ -32,13 +34,13 @@ export class SignupComponent implements OnInit {
       );
   }
 
-  getPrivateData() {
-    this.session.getPrivateData()
-      .subscribe(
-        (data) => this.privateData = data,
-        (err) => this.error = err
-      );
-  }
+  // getPrivateData() {
+  //   this.session.getPrivateData()
+  //     .subscribe(
+  //       (data) => this.privateData = data,
+  //       (err) => this.error = err
+  //     );
+  // }
 
   errorCb(err) {
     this.error = err;
@@ -47,6 +49,8 @@ export class SignupComponent implements OnInit {
 
   successCb(user) {
     this.user = user;
+    this.session.checkLogged(user);
     this.error = null;
+    this.router.navigate(['home']);
   }
 }

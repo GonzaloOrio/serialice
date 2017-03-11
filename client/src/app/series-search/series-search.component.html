@@ -14,8 +14,8 @@
               <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
               <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
             </a>
-            <h4 class="text-center">{{serie.title}}</h4>
-            <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
+            <h4 class="text-center">{{serie.name}}</h4>
+            <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
           </div>
         </div>
       </div>

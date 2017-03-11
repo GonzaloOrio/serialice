@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSessionService } from "../user-session.service";
 import { Router } from '@angular/router';
+// import { ModalModule } from "ngx-modal";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [ UserSessionService ]
 })
 export class LoginComponent implements OnInit {
   user: any;
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
   error: string;
-  privateData: any = '';
+  // privateData: any = '';
 
   constructor(private session: UserSessionService, private router: Router) { }
 
@@ -28,13 +30,13 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  getPrivateData() {
-    this.session.getPrivateData()
-      .subscribe(
-        (data) => this.privateData = data,
-        (err) => this.error = err
-      );
-  }
+  // getPrivateData() {
+  //   this.session.getPrivateData()
+  //     .subscribe(
+  //       (data) => this.privateData = data,
+  //       (err) => this.error = err
+  //     );
+  // }
 
   errorCb(err) {
     this.error = err;
@@ -45,6 +47,6 @@ export class LoginComponent implements OnInit {
     this.user = user;
     this.session.checkLogged(user);
     this.error = null;
-    this.router.navigate(['home'])
+    this.router.navigate(['home']);
   }
   }

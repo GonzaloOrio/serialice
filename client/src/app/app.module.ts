@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+// import { ModalModule } from "ngx-modal";
 import { HttpModule,JsonpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'home',  component: HomeComponent },
   { path: 'signup',  component: SignupComponent },
   { path: 'login',  component: LoginComponent },
+  { path: 'logout',  component: LoginComponent },
   { path: 'profile',  component: UserComponent },
   { path: 'serie/:id', component: SerieShowComponent }
 
@@ -46,6 +48,7 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    // ModalModule,
     JsonpModule,
     RouterModule.forRoot(routes)
   ],
