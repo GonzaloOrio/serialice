@@ -26,7 +26,6 @@ export class SeriesService {
       .map(result => result.json())
   }
 
-
   // public getTopRatedSeries() {
   //   return this.jsonp.get(this.baseUrl + this.serie + 'top_rated' + this.jsonpCallback + this.apikey)
   //     .map(result => result.json())
@@ -38,7 +37,7 @@ export class SeriesService {
   // }
 
   // public getNowPlayingSeries() {
-  //   return this.jsonp.get(this.baseUrl + this.serie + 'now_playing' + this.jsonpCallback + this.apikey)
+  //   return this.jsonp.get(this.baseUrl + this.serie + 'on-the-air' + this.jsonpCallback + this.apikey)
   //     .map(result => result.json())
   // }
 
@@ -51,6 +50,11 @@ export class SeriesService {
     return this.jsonp.get(this.baseUrl + this.serie + id + this.jsonpCallback + this.apikey)
       .map(result => result.json())
   }
+
+  // public getSerieSeasonDetails(id,seasonNum) {
+  //   return this.jsonp.get(this.baseUrl + this.serie + id + '/season' + seasonNum + this.jsonpCallback + this.apikey)
+  //     .map(result => result.json())
+  // }
 
   public getSimilarSeries(id) {
     return this.jsonp.get(this.baseUrl + this.serie +  id + '/similar' +this.jsonpCallback + this.apikey)

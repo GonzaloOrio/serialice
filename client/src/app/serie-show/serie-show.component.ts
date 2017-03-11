@@ -21,6 +21,11 @@ export class SerieShowComponent implements OnInit {
       .switchMap(id => this.seriesService.getSerieDetails(id))
       .subscribe(result => this.serie = result);
 
+    // this.route.params
+    //   .map(params => params['id'])
+    //   .switchMap(id => this.seriesService.getSerieSeasonDetails(id))
+    //   .subscribe(result => this.serie = result);
+
     this.route.params
       .map(params => params['id'])
       .switchMap(id => this.seriesService.getSimilarSeries(id))

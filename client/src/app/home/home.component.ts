@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
             console.log('PopularSeries')
             console.log(response.results)
             this.popularSeries = response.results;
-          })
+          });
 
       // this.seriesService.getTopRatedSeries()
       //   .subscribe(
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
       //       console.log('TopRatedSeries')
       //       console.log(response.results)
       //       this.topRatedSeries = response.results;
-      //     })
+      //     });
       //
       // this.seriesService.getUpComingSeries()
       //   .subscribe(
@@ -57,8 +57,6 @@ export class HomeComponent implements OnInit {
     searchSeries() {
       this.seriesService.searchSeries(this.searchQuery)
         .subscribe(response => {
-          console.log('searchSeries')
-          console.log(response.results)
           this.seriesService.setSharedSearchResult(response.results);
         })
     }
@@ -67,8 +65,6 @@ export class HomeComponent implements OnInit {
       if (this.searchQuery.length > 2) {
         this.seriesService.searchSeries(this.searchQuery)
           .subscribe(response => {
-            console.log('autocompleteSearchSeries')
-            console.log(response.results)
             this.autocompleteSeries = response.results;
           })
       } else {
@@ -80,5 +76,4 @@ export class HomeComponent implements OnInit {
       this.searchQuery = serie;
       this.autocompleteSeries = [];
     }
-
   }

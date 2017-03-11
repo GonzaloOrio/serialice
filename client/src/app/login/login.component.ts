@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSessionService } from "../user-session.service";
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class UserComponent implements OnInit {
+export class LoginComponent implements OnInit {
   user: any;
   formInfo = {
     username: '',
@@ -15,32 +16,14 @@ export class UserComponent implements OnInit {
   error: string;
   privateData: any = '';
 
-  constructor(private session: UserSessionService) { }
+  constructor(private session: UserSessionService, private router: Router) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   login() {
     this.session.login(this.formInfo)
       .subscribe(
         (user) => this.successCb(user),
-        (err) => this.errorCb(err)
-      );
-  }
-
-  signup() {
-    this.session.signup(this.formInfo)
-      .subscribe(
-        (user) => this.successCb(user),
-        (err) => this.errorCb(err)
-      );
-  }
-
-  logout() {
-    this.session.logout()
-      .subscribe(
-        () => this.successCb(null),
         (err) => this.errorCb(err)
       );
   }
@@ -60,6 +43,8 @@ export class UserComponent implements OnInit {
 
   successCb(user) {
     this.user = user;
+    this.session.checkLogged(user);
     this.error = null;
+    this.router.navigate(['home'])
   }
-}
+  }

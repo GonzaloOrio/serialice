@@ -11,15 +11,20 @@ import { UserSessionService } from "./user-session.service";
 import { SeriesService } from "./series.service";
 
 import { HeaderComponent } from './header/header.component';
+import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { SeriesSearchComponent } from './series-search/series-search.component';
 import { SerieShowComponent } from './serie-show/serie-show.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+
 
 const routes: Routes = [
-  { path: '',  component: HomeComponent },
+  { path: '',  component: LandingComponent },
   { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: 'signup',  component: UserComponent },
-  { path: 'login',  component: UserComponent },
+  { path: 'home',  component: HomeComponent },
+  { path: 'signup',  component: SignupComponent },
+  { path: 'login',  component: LoginComponent },
   { path: 'profile',  component: UserComponent },
   { path: 'serie/:id', component: SerieShowComponent }
 
@@ -30,9 +35,12 @@ const routes: Routes = [
     AppComponent,
     UserComponent,
     HeaderComponent,
+    LandingComponent,
     HomeComponent,
     SeriesSearchComponent,
-    SerieShowComponent
+    SerieShowComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

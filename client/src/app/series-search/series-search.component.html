@@ -1,4 +1,4 @@
-<div *ngIf="seriesService.sharedSearchResult.length > 0">
+<section *ngIf="seriesService.sharedSearchResult.length > 0">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3>Search Results</h3>
@@ -7,7 +7,7 @@
         </a>
     </div>
     <div class="panel-body">
-      <div class="row">
+      <div class="row search">
         <div *ngFor="let serie of seriesService.sharedSearchResult, let i = index">
           <div class="col-md-2 text-center arrange">
             <a href="#" routerLink="/serie/{{serie.id}}" >
@@ -21,4 +21,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

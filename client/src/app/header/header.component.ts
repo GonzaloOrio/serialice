@@ -8,13 +8,30 @@ import { UserSessionService } from "../user-session.service";
   providers: [UserSessionService]
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private user : UserSessionService) { }
+  user: any;
+  error: string;
+  constructor(private session : UserSessionService) {
+  session.getEmitter().subscribe((user) => {this.user = user});
+}
 
   ngOnInit() {
-  //   this.user.login(this.user)
-  // .subscribe((user) => {
-  //   this.user});
+    this.session.isLoggedIn()
+     .subscribe(
+       (user) => this.successCb(user)
+     );
   }
+
+
+    errorCb(err) {
+      this.error = err;
+      this.user = null;
+    }
+
+    successCb(user) {
+    this.user = user;
+    this.session.checkLogged(user);
+    this.error = null;
+  }
+
 
 }

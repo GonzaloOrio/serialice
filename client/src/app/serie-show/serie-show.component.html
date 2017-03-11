@@ -16,20 +16,23 @@
         <div class="col-md-6">
           <ul class="list-group">
             <li class="list-group-item">
-              <strong>Original Title:</strong> {{serie.original_title}}
+              <strong>Original Title:</strong> {{serie.name}}
+            </li>
+            <li class="list-group-item">
+              <strong>Seasons:</strong> {{serie.season}}
             </li>
             <li class="list-group-item">
               <strong>Overview:</strong> {{serie.overview}}
             </li>
-            <li class="list-group-item">
+            <!-- <li class="list-group-item">
               <strong>Budget:</strong> {{serie.budget}}
-            </li>
+            </li> -->
             <li class="list-group-item">
               <strong>Genres:</strong> <span *ngFor="let gen of serie.genres">{{gen.name}} </span>
             </li>
-            <li class="list-group-item">
+            <!-- <li class="list-group-item">
               <strong>Release Date:</strong> {{serie.release_date}}
-            </li>
+            </li> -->
             <li class="list-group-item">
               <strong>Rating:</strong> {{serie.vote_average}}
             </li>
@@ -59,7 +62,7 @@
                 <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
                 <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
               </a>
-              <h4 class="text-center">{{serie.title}}</h4>
+              <h4 class="text-center">{{serie.name}}</h4>
               <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
             </div>
           </div>

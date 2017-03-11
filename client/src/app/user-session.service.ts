@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 
 const baseURL = "http://localhost:3000"
 // const baseURL = ""
@@ -10,8 +11,9 @@ const baseURL = "http://localhost:3000"
 
 @Injectable()
 export class UserSessionService {
-
-  constructor(private http: Http) { }
+  user:any;
+  userLogged = new EventEmitter();
+constructor(private http: Http) { }
 
   handleError(e) {
     return Observable.throw(e.json().message);
@@ -30,7 +32,7 @@ export class UserSessionService {
   }
 
   logout() {
-    return this.http.post(`${baseURL}/logout`, {withCredentials:true})
+    return this.http.post(`${baseURL}/logout`,{}, {withCredentials:true})
       .map(res => res.json())
       .catch(this.handleError);
   }
@@ -46,4 +48,23 @@ export class UserSessionService {
       .map(res => res.json())
       .catch(this.handleError);
   }
+
+  getEmitter(){
+    return this.userLogged;
+  }
+
+  userIsLoggedIn():boolean{
+    return this.user != undefined ? true : false;
+  }
+
+  getUser(){
+    return this.user;
+  }
+
+  checkLogged(user){
+    this.user = user;
+    this.userLogged.emit(user);
+  }
+
+
 }
