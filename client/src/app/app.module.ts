@@ -1,12 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-// import { ModalModule } from "ngx-modal";
-import { HttpModule,JsonpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from "@angular/router";
-import { UserComponent } from './user/user.component';
 
 import { UserSessionService } from "./user-session.service";
 import { SeriesService } from "./series.service";
@@ -18,6 +16,7 @@ import { SeriesSearchComponent } from './series-search/series-search.component';
 import { SerieShowComponent } from './serie-show/serie-show.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -27,7 +26,7 @@ const routes: Routes = [
   { path: 'signup',  component: SignupComponent },
   { path: 'login',  component: LoginComponent },
   { path: 'logout',  component: LoginComponent },
-  { path: 'profile',  component: UserComponent },
+  { path: 'profile',  component: ProfileComponent },
   { path: 'serie/:id', component: SerieShowComponent }
 
 ];
@@ -35,21 +34,19 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
     HeaderComponent,
     LandingComponent,
     HomeComponent,
     SeriesSearchComponent,
     SerieShowComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    // ModalModule,
-    JsonpModule,
     RouterModule.forRoot(routes)
   ],
   providers: [UserSessionService,SeriesService],

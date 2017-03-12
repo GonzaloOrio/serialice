@@ -1,3 +1,88 @@
-.signup-form{
-  margin: 100px 0px 0px 0px;
+.signup-body{
+  background-image:url(../../assets/living_room_bn.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.main{
+  padding: 0 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
+.form-group{
+	margin: 15px;
+}
+
+.main-signup{
+ 	background-color: #fff;
+  /* shadows and rounded borders */
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+.form-control {
+  height: auto;
+  padding: 8px 12px;
+  font-size: 1.2rem;
+}
+.input-group {
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21);
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21);
+}
+
+.main-center{
+  margin-top: 30px;
+  margin: 0 auto;
+  max-width: 400px;
+  min-width: 300px;
+  padding: 10px 40px;
+  background:#d86e3c;
+  color: #FFF;
+  text-shadow: none;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+
+}
+span.input-group-addon i {
+  color: #d86e3c;
+  font-size: 1.7rem;
+}
+
+.signup-button{
+	margin-top: 5px;
+}
+
+.signup-register{
+	font-size: 1.1rem;
+	text-align: center;
+}
+
+.btn-signup {
+  background-color: #1b1b1b;
+  color: #FFF;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-signup:hover {
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.error{
+  color: #1b1b1b;
+  font-size: 2rem;
 }

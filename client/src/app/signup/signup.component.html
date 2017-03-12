@@ -1,21 +1,33 @@
-<form class="signup-form" *ngIf="!user">
-  <label> Username </label>
-  <input type="text" [(ngModel)]="formInfo.username" name="username"/>
-  <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="formInfo.password" name="password"/>
+<div class="container signup-body">
+			<div class="row main">
+				<div class="main-signup main-center">
+					<form *ngIf="!user">
 
-  <button (click)="signup()"> SignUp </button>
-</form>
-<div *ngIf="user">
-  <h2> You are now logged in as {{ user.username }}!! </h2>
-  <p> Here's the user object </p>
-  <pre> {{ user | json }} </pre>
+						<div class="form-group">
+							<!-- <label for="username" class="cols-sm-2 control-label">Username</label> -->
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" [(ngModel)]="formInfo.username" name="username"  placeholder="Enter your Username"/>
+								</div>
+							</div>
+						</div>
 
-  <p *ngIf="privateData"> Here's some data fetched from a protected API </p>
-  <pre> {{ privateData | json }} </pre>
-  <button (click)="logout()"> logout </button>
-  <button (click)="getPrivateData()"> Get private data </button>
-</div>
+						<div class="form-group">
+							<!-- <label for="password" class="cols-sm-2 control-label">Password</label> -->
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" [(ngModel)]="formInfo.password" name="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
 
-<p class="error"> {{ error }} </p>
+						<div class="form-group ">
+							<button (click)="signup()" class="btn btn-signup btn-block"> Signup </button>
+              <p class="error"> {{ error }} </p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSessionService } from "../user-session.service";
 import { Router } from '@angular/router';
-// import { ModalModule } from "ngx-modal";
 
 @Component({
   selector: 'app-login',

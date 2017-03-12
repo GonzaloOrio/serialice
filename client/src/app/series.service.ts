@@ -30,11 +30,6 @@ export class SeriesService {
       .map(result => result.json())
   }
 
-  // public getUpComingSeries() {
-  //   return this.jsonp.get(this.baseUrl + this.serie + 'upcoming' + this.jsonpCallback + this.apikey)
-  //     .map(result => result.json())
-  // }
-
   public getNowPlayingSeries() {
     return this.http.get(this.baseUrl + this.serie + 'on_the_air?' + this.apikey)
       .map(result => result.json())
@@ -51,7 +46,7 @@ export class SeriesService {
   }
 
   // public getSerieSeasonDetails(id,season) {
-  //   return this.http.get(this.baseUrl + this.serie + id + '/season' + season + '?'+this.apikey)
+  //   return this.http.get(this.baseUrl + this.serie + id + '/season/' + season + '?'+this.apikey)
   //     .map(result => result.json())
   // }
 
