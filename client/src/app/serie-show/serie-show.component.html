@@ -1,68 +1,65 @@
-<app-series-search> </app-series-search>
 
-<div *ngIf="serie">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h2 class="text-center">{{serie.title}}</h2>
-    </div>
-    <div class="panel-body">
+
+<div *ngIf="serie" class="serie-body">
+  <div class="serie-wrap">
+
+    <div class="">
       <div class="row">
 
-        <div class="col-md-4 col-md-offset-2">
-          <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-          <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+        <div class="col-md-4 col-md-offset-2 text-center">
+          <img *ngIf="serie.poster_path" class="img-thumbnail serie-poster" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+          <img *ngIf="!serie.poster_path" class="img-thumbnail serie-poster" src="http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
         </div>
 
-        <div class="col-md-4">
-          <ul class="list-group">
-            <li class="list-group-item">
+        <div class="col-md-4 text-center">
+          <h2 class="serie-name">{{serie.name}}</h2>
+          <ul class="list-group serie-poster-container">
+            <!-- <li class="list-group-item">
               <strong>Original Title:</strong> {{serie.name}}
+            </li> -->
+            <li class="list-group-item serie-info">
+              <strong>Seasons:</strong> {{serie.number_of_seasons}}
+              <!-- <div *ngFor="let season of serie.seasons.season_number">
+              </div> -->
             </li>
-            <li class="list-group-item">
-              <strong>Seasons:</strong> {{serie.seasons}}
-            </li>
-            <li class="list-group-item">
+            <li class="list-group-item serie-info">
               <strong>Overview:</strong> {{serie.overview}}
             </li>
             <!-- <li class="list-group-item">
               <strong>Budget:</strong> {{serie.budget}}
             </li> -->
-            <li class="list-group-item">
+            <li class="list-group-item serie-info">
               <strong>Genres:</strong> <span *ngFor="let gen of serie.genres">{{gen.name}} </span>
             </li>
             <!-- <li class="list-group-item">
               <strong>Release Date:</strong> {{serie.release_date}}
             </li> -->
-            <li class="list-group-item">
+            <li class="list-group-item serie-info">
               <strong>Rating:</strong> {{serie.vote_average}}
             </li>
-            <li class="list-group-item">
+            <!-- <li class="list-group-item serie-info">
               <strong>Rating count:</strong> {{serie.vote_count}}
-            </li>
+            </li> -->
           </ul>
-
-          <hr />
-
-          <a *ngIf="serie.homepage" href="{{serie.homepage}}" target="_blank" class="btn btn-primary btn-lg btn-block">Serie Homepage</a>
+          <a *ngIf="serie.homepage" href="{{serie.homepage}}" target="_blank" class="btn serie-btn-homepage btn-block">Serie Homepage</a>
         </div>
       </div>
-    </div>
-  </div>
+
 
   <div *ngIf="similarSeries.length > 0">
-    <div class="panel panel-default">
+    <div class="serie-similar-container">
       <div class="panel-heading">
-      <h3 class="text-center">Recommended Series</h3>
+      <h3 class="text-center serie-name">Recommended Series</h3>
       </div>
-      <div class="panel-body">
+      <div class="">
         <div class="row">
           <div *ngFor="let serie of similarSeries, let i = index">
             <div *ngIf="i < 6" class="col-md-2 text-center">
               <a href="#" routerLink="/serie/{{serie.id}}" >
-                <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-                <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+                <img *ngIf="serie.poster_path" class="img-thumbnail serie-rec-poster" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+                <img *ngIf="!serie.poster_path" class="img-thumbnail serie-rec-poster" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
               </a>
-              <h4 class="text-center">{{serie.name}}</h4>
+              <h4 class="text-center serie-name-recomended">{{serie.name}}</h4>
               <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
             </div>
           </div>
@@ -70,3 +67,6 @@
       </div>
     </div>
   </div>
+
+</div>
+</div>

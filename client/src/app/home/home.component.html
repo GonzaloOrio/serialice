@@ -1,7 +1,7 @@
 
 <section class="search-nav">
   <form class="form-wrapper cf" (submit)="searchSeries()">
-    <input name="searchQuery" type="text" placeholder="Search Your Series here..." [(ngModel)]="searchQuery" (keyup)="autocompleteSearchSeries()">
+    <input name="searchQuery" type="text" placeholder="Search Your Series here..." autocomplete="off" [(ngModel)]="searchQuery" (keyup)="autocompleteSearchSeries()">
     <button type="submit">Search</button>
     <div class="suggestions" *ngIf="autocompleteSeries.length > 0">
       <ul >
@@ -13,28 +13,61 @@
   </form>
 </section>
 
-
-
-
 <app-series-search> </app-series-search>
 
 <div class="bg-home">
   <div class="wrap-series">
-    <h3 class="section-home">Popular Series</h3>
+    <h2 class="section-home">Popular Series</h2>
     <div class="panel-body">
       <div class="row" *ngIf="popularSeries">
         <div *ngFor="let serie of popularSeries, let i = index">
           <div *ngIf="i < 20" class="col-md-3 col-sm-4 text-center">
-            <h4 class="text-center serie-name">{{serie.name}}</h4>
+
             <a routerLink="/serie/{{serie.id}}" >
               <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-              <!-- <div class="reflection">
-                  <img src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}" alt="" />
-                  <div class="overlay"></div>
-              </div> -->
-              <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+              <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
             </a>
+            <h4 class="text-center serie-name">{{serie.name}}</h4>
+            <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+
+
+  <div class="wrap-series">
+    <h2 class="section-home">Top Rated Series</h2>
+    <div class="panel-body">
+      <div class="row" *ngIf="topRatedSeries">
+        <div *ngFor="let serie of topRatedSeries, let i = index">
+          <div *ngIf="i < 12" class="col-md-3 col-sm-4 text-center">
+
+           <a routerLink="/serie/{{serie.id}}" >
+            <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+            <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+           </a>
+           <h4 class="text-center serie-name">{{serie.name}}</h4>
+          <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<div class="wrap-series">
+  <h2 class="section-home">Now Playing Series</h2>
+    <div class="panel-body">
+      <div class="row" *ngIf="nowPlayingSeries">
+        <div *ngFor="let serie of nowPlayingSeries, let i = index">
+          <div *ngIf="i < 12" class="col-md-3 col-sm-4 text-center">
+
+            <a routerLink="/serie/{{serie.id}}" >
+              <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+              <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+            </a>
+            <h4 class="text-center serie-name">{{serie.name}}</h4>
             <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
           </div>
         </div>
@@ -42,67 +75,6 @@
     </div>
   </div>
 </div>
-
-
-<!-- <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3>Top Rated Series</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row" *ngIf="topRatedSeries">
-      <div *ngFor="let serie of topRatedSeries, let i = index">
-        <div *ngIf="i <= 5" class="col-md-2 text-center">
-         <a href="#" routerLink="/serie/{{serie.id}}" >
-          <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-          <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
-        </a>
-        <h4 class="text-center">{{serie.title}}</h4>
-        <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
-      </div>
-    </div>
-  </div>
-</div>
-</div> -->
-
-<!-- <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3>Upcoming Series</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row" *ngIf="upComingSeries">
-      <div *ngFor="let serie of upComingSeries, let i = index">
-        <div *ngIf="i <= 5" class="col-md-2 text-center">
-         <a href="#" routerLink="/serie/{{serie.id}}" >
-          <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-          <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
-        </a>
-        <h4 class="text-center">{{serie.title}}</h4>
-        <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
-      </div>
-    </div>
-  </div>
-</div>
-</div> -->
-
-<!-- <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3>Now Playing Series</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row" *ngIf="nowPlayingSeries">
-      <div *ngFor="let serie of nowPlayingSeries, let i = index">
-        <div *ngIf="i <= 5" class="col-md-2 text-center">
-          <a href="#" routerLink="/serie/{{serie.id}}" >
-            <img *ngIf="serie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-            <img *ngIf="!serie.poster_path" class="img-thumbnail" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
-          </a>
-          <h4 class="text-center">{{serie.name}}</h4>
-          <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 
 

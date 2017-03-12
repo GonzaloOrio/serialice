@@ -9,9 +9,9 @@ import { SeriesService } from "../series.service";
 })
 export class HomeComponent implements OnInit {
   popularSeries: Array<Object>;
-  // topRatedSeries: Array<Object>;
+  topRatedSeries: Array<Object>;
   // upComingSeries: Array<Object>;
-  // nowPlayingSeries: Array<Object>;
+  nowPlayingSeries: Array<Object>;
   searchQuery: string;
   autocompleteSeries: Array<Object> = [];
 
@@ -27,14 +27,14 @@ export class HomeComponent implements OnInit {
             this.popularSeries = response.results;
           });
 
-      // this.seriesService.getTopRatedSeries()
-      //   .subscribe(
-      //     response => {
-      //       console.log('TopRatedSeries')
-      //       console.log(response.results)
-      //       this.topRatedSeries = response.results;
-      //     });
-      //
+      this.seriesService.getTopRatedSeries()
+        .subscribe(
+          response => {
+            console.log('TopRatedSeries')
+            console.log(response.results)
+            this.topRatedSeries = response.results;
+          });
+
       // this.seriesService.getUpComingSeries()
       //   .subscribe(
       //     response => {
@@ -43,13 +43,13 @@ export class HomeComponent implements OnInit {
       //       this.upComingSeries = response.results;
       //     })
       //
-      // this.seriesService.getNowPlayingSeries()
-      //   .subscribe(
-      //     response => {
-      //       console.log('NowPlayingSeries')
-      //       console.log(response.results)
-      //       this.nowPlayingSeries = response.results;
-      //     })
+      this.seriesService.getNowPlayingSeries()
+        .subscribe(
+          response => {
+            console.log('NowPlayingSeries')
+            console.log(response.results)
+            this.nowPlayingSeries = response.results;
+          })
 
       this.seriesService.setSharedSearchResult([]);
     }

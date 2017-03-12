@@ -10,6 +10,7 @@ import {Router, ActivatedRoute} from '@angular/router'
 export class SerieShowComponent implements OnInit {
   private similarSeries: Array<Object> = [];
   private serie: any = {};
+  private season: any = {};
 
   constructor(
     private seriesService: SeriesService,
@@ -21,11 +22,6 @@ export class SerieShowComponent implements OnInit {
       .switchMap(id => this.seriesService.getSerieDetails(id))
       .subscribe(result => this.serie = result);
 
-    // this.route.params
-    //   .map(params => params['id'])
-    //   .switchMap(id => this.seriesService.getSerieSeasonDetails(id))
-    //   .subscribe(result => this.serie = result);
-
     this.route.params
       .map(params => params['id'])
       .switchMap(id => this.seriesService.getSimilarSeries(id))
@@ -36,6 +32,5 @@ export class SerieShowComponent implements OnInit {
       .subscribe(() => {this.seriesService.setSharedSearchResult([]); window.scrollTo(0,0);});
 
     this.seriesService.setSharedSearchResult([]);
-    console.log("the serie object: "+this.serie.seasons);
   }
 }

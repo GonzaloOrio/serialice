@@ -1,6 +1,8 @@
 .landing {
   padding-top: 25px;
-  background-color: red;
+  background-image:url(../../assets/living_room_bn.jpg);
+  background-size: cover;
+  background-position: center;
   margin: 0 auto;
   /*background-image: url(../assets/fondo.jpg);
   background-repeat: no-repeat;
@@ -16,10 +18,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.home-heading-wrapper > h1 {
-  font-size: 9rem;
+.home-heading-wrapper > h2 {
+  font-size: 4rem;
+  color: #FFF;
 }
 
-.home-heading-wrapper > p {
+.home-heading-wrapper > h3 {
   font-size: 2rem;
+  color: #FFF;
 }
