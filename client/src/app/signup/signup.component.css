@@ -19,6 +19,7 @@
 }
 
 .main-signup{
+  text-align: center;
  	background-color: #fff;
   /* shadows and rounded borders */
   -moz-border-radius: 2px;
@@ -82,7 +83,16 @@ span.input-group-addon i {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
+.redirect{
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: none;
+  color: #1b1b1b;
+  font-size: 1.3rem;
+}
+
 .error{
   color: #1b1b1b;
-  font-size: 2rem;
+  font-size: 1.3rem;
+  padding: 10px;
 }

@@ -7,5 +7,16 @@
 
 .profile-wrap{
   width: 90%;
-  
+
+}
+
+.profile-avatar{
+width: 150px;
+height: 150px;
+border-radius: 50%;
+overflow: hidden;
+align-items: center;
+margin-bottom: 15px;
+background-size: cover;
+background-position: center;
 }
