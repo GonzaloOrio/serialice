@@ -7,6 +7,25 @@
   border-color: #d86e3c;
 }
 
+.logout-button {
+    align-items: flex-start;
+    text-align: center;
+    cursor: pointer;
+    color: #000;
+    background-color: inherit;;
+    box-sizing: none;
+    padding-top: 15px;
+    border-width: 2px;
+    border-style: inherit;
+    border-color: inherit;
+    border-image: inherit;
+}
+
+.logout-button:hover{
+    color: #FFF;
+
+}
+
 .navbar-inverse .navbar-brand, .navbar-nav>li>a{
   color: #000;
 }

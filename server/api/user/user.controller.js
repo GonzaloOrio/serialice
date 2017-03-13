@@ -95,16 +95,4 @@ userController.get("/loggedin", function(req, res) {
   });
 });
 
-userController.get("/private", (req, res) => {
-  if (req.isAuthenticated()) {
-    return res.json({
-      message: 'This is a private message'
-    });
-  }
-
-  return res.status(403).json({
-    message: 'Unauthorized'
-  });
-});
-
 module.exports = userController;

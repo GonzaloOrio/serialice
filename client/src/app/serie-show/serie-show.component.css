@@ -25,6 +25,7 @@
   border-radius: inherit;
 
 }
+
 .serie-btn-homepage {
     color: #FFF;
     background-color: #d86e3c;
@@ -34,6 +35,17 @@
 .serie-btn-homepage:hover {
     background-color: #ff612c;
     border-color: #ff612c;
+}
+
+.serie-btn-add-list {
+    color: #FFF;
+    background-color: #0e209a;
+    border-color: #0e209a;
+}
+
+.serie-btn-add-list:hover {
+    background-color: #2243f1;
+    border-color: #2243f1;
 }
 
 .serie-poster,.serie-rec-poster{

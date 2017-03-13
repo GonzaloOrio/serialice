@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSessionService } from "../user-session.service";
-// import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +11,8 @@ import { UserSessionService } from "../user-session.service";
 export class HeaderComponent implements OnInit {
   user: any;
   error: string;
-  constructor(private session : UserSessionService) {
-  session.getEmitter().subscribe((user) => {this.user = user});
+  constructor(private session : UserSessionService, private router: Router) {
+    session.getEmitter().subscribe((user) => {this.user = user});
   }
 
   ngOnInit() {
@@ -22,13 +22,13 @@ export class HeaderComponent implements OnInit {
      );
   }
 
-  // logout() {
-  //   this.session.logout()
-  //     .subscribe(
-  //       (user) => this.successCb(user),
-  //       (err) => this.errorCb(err)
-  //     );
-  // }
+  logout() {
+    this.session.logout()
+      .subscribe(
+        (user) => this.successCb(user),
+        (err) => this.errorCb(err)
+      );
+  }
 
   errorCb(err) {
     this.error = err;
@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit {
   this.user = user;
   this.session.checkLogged(user);
   this.error = null;
+  this.router.navigate(['']);
   }
 
 

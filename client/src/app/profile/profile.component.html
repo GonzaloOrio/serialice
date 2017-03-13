@@ -1,6 +1,9 @@
 <section class="profile-bg">
-  <div class="profile-wrap">
-    <div class="profile-avatar" style="background-image:url({{user.imgUrl}})">
+  <div *ngIf="user" class="profile-wrap">
+    <div class="profile-avatar">
+      <img [src]="user.imgUrl" alt="img profile">
     </div>
+    <h3 class="profile-name">{{user.username}}</h3>
+    <h2 class="serie-list">My series list</h2>
   </div>
 </section>

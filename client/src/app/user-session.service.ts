@@ -28,6 +28,7 @@ constructor(private http: Http) { }
   login(user) {
     return this.http.post(`${baseURL}/login`, user,{withCredentials:true})
       .map(res => res.json())
+      // .map(user => {this.emmiter.emit(user); return user})
       .catch(this.handleError);
   }
 
@@ -43,11 +44,11 @@ constructor(private http: Http) { }
       .catch((err) => this.handleError(err));
   }
 
-  getPrivateData() {
-    return this.http.get(`${baseURL}/private`,{withCredentials:true})
-      .map(res => res.json())
-      .catch(this.handleError);
-  }
+  // getPrivateData() {
+  //   return this.http.get(`${baseURL}/private`,{withCredentials:true})
+  //     .map(res => res.json())
+  //     .catch(this.handleError);
+  // }
 
   getEmitter(){
     return this.userLogged;
@@ -65,6 +66,18 @@ constructor(private http: Http) { }
     this.user = user;
     this.userLogged.emit(user);
   }
+
+  // errorCb(err) {
+  //   this.error = err;
+  //   this.user = null;
+  // }
+  //
+  // successCb(user) {
+  //   this.user = user;
+  //   this.session.checkLogged(user);
+  //   this.error = null;
+  //   this.router.navigate(['home']);
+  // }
 
 
 }

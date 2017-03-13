@@ -7,10 +7,9 @@ import { UserSessionService } from "./user-session.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
   user:any;
 
   constructor(private session : UserSessionService) {
   session.getEmitter().subscribe((user) => {this.user = user});
-  } 
+  }
 }

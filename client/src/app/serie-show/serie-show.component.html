@@ -41,6 +41,7 @@
               <strong>Rating count:</strong> {{serie.vote_count}}
             </li> -->
           </ul>
+          <a *ngIf="serie.homepage" href="#" class="btn serie-btn-add-list btn-block">Add to my list</a>
           <a *ngIf="serie.homepage" href="{{serie.homepage}}" target="_blank" class="btn serie-btn-homepage btn-block">Serie Homepage</a>
         </div>
       </div>

@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
     password: ''
   };
   error: string;
-  // privateData: any = '';
 
   constructor(private session: UserSessionService, private router: Router) { }
 
@@ -28,14 +27,6 @@ export class LoginComponent implements OnInit {
         (err) => this.errorCb(err)
       );
   }
-
-  // getPrivateData() {
-  //   this.session.getPrivateData()
-  //     .subscribe(
-  //       (data) => this.privateData = data,
-  //       (err) => this.error = err
-  //     );
-  // }
 
   errorCb(err) {
     this.error = err;
