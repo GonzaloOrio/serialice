@@ -21,24 +21,24 @@ export class HomeComponent implements OnInit {
     this.seriesService.getPopularSeries()
       .subscribe(
         response => {
-          console.log('PopularSeries')
-          console.log(response.results)
+          // console.log('PopularSeries')
+          // console.log(response.results)
           this.popularSeries = response.results;
         });
 
     this.seriesService.getTopRatedSeries()
       .subscribe(
         response => {
-          console.log('TopRatedSeries')
-          console.log(response.results)
+          // console.log('TopRatedSeries')
+          // console.log(response.results)
           this.topRatedSeries = response.results;
         });
 
     this.seriesService.getNowPlayingSeries()
       .subscribe(
         response => {
-          console.log('NowPlayingSeries')
-          console.log(response.results)
+          // console.log('NowPlayingSeries')
+          // console.log(response.results)
           this.nowPlayingSeries = response.results;
         })
 

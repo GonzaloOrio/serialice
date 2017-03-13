@@ -19,10 +19,6 @@ export class SignupComponent implements OnInit {
   constructor(private session: UserSessionService, private router: Router) { }
 
   ngOnInit() {
-    // this.session.isLoggedIn()
-    //   .subscribe(
-    //     (user) => this.successCb(user)
-    //   );
   }
 
   signup() {

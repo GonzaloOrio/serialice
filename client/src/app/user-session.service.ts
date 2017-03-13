@@ -11,8 +11,8 @@ const baseURL = "http://localhost:3000"
 
 @Injectable()
 export class UserSessionService {
-  user:any;
-  userLogged = new EventEmitter();
+private user:any;
+private userLogged = new EventEmitter();
 constructor(private http: Http) { }
 
   handleError(e) {
@@ -44,16 +44,10 @@ constructor(private http: Http) { }
       .catch((err) => this.handleError(err));
   }
 
-  // getPrivateData() {
-  //   return this.http.get(`${baseURL}/private`,{withCredentials:true})
-  //     .map(res => res.json())
-  //     .catch(this.handleError);
-  // }
-
   getEmitter(){
     return this.userLogged;
   }
-
+  
   userIsLoggedIn():boolean{
     return this.user != undefined ? true : false;
   }

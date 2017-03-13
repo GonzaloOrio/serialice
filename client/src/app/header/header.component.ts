@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
 
   successCb(user) {
   this.user = user;
-  this.session.checkLogged(user);
+  // this.session.checkLogged(user);
   this.error = null;
   this.router.navigate(['']);
   }

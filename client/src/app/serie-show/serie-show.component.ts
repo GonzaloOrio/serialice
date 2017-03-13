@@ -1,22 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { SeriesService } from "../series.service";
+import { UserSessionService } from "../user-session.service";
 import {Router, ActivatedRoute} from '@angular/router'
 
 @Component({
   selector: 'app-serie-show',
   templateUrl: './serie-show.component.html',
-  styleUrls: ['./serie-show.component.css']
+  styleUrls: ['./serie-show.component.css'],
+  providers: [UserSessionService]
 })
 export class SerieShowComponent implements OnInit {
   private similarSeries: Array<Object> = [];
   private serie: any = {};
+  private serieId: String;
+  private user: any = {};
   private season: any = {};
+  private list: any;
+  // private serieList: any = {
+  //     userId: '',
+  //     serieId: ''
+  //   };
+  private error: string;
 
   constructor(
     private seriesService: SeriesService,
-    private route: ActivatedRoute) { }
+    private sessionService: UserSessionService,
+    private route: ActivatedRoute) {
+        // this.user = sessionService.getUser();
+    }
 
   ngOnInit() {
+    this.sessionService.isLoggedIn()
+     .subscribe(
+       (user) => this.successCb(user)
+     );
+
+    this.route.params
+      .subscribe((params)=> {
+        this.serieId = params['id'];
+      });
+
     this.route.params
       .map(params => params['id'])
       .switchMap(id => this.seriesService.getSerieDetails(id))
@@ -32,5 +55,27 @@ export class SerieShowComponent implements OnInit {
       .subscribe(() => {this.seriesService.setSharedSearchResult([]); window.scrollTo(0,0);});
 
     this.seriesService.setSharedSearchResult([]);
+  }
+
+  addToMyList() {
+    this.seriesService.addToList(this.user._id,this.serie.id)
+      .subscribe(
+        (list) => this.successCb(list),
+        (err) => this.errorCb(err)
+      );
+  }
+
+  errorCb(err) {
+    this.error = err;
+    this.list = null;
+    console.log("que pasa", err);
+  }
+
+  successCb(list) {
+    this.list = list;
+    this.error = null;
+    console.log("que pasooooooo", list);
+
+    // this.router.navigate(['home']);
   }
 }

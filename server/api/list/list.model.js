@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ListSchema = new Schema({
-  userID: {
+  userId: {
     type: String,
     required: true
   },
-  serieID: {
+  serieId: {
     type: String,
     required: true
   },

@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http'
-import 'rxjs/Rx'
+import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs/Rx';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+
+const baseURL = "http://localhost:3000"
+// const baseURL = ""
 
 @Injectable()
 export class SeriesService {
-  private apikey = 'api_key=15e2ef2c6a55de911f80c81d7448459a';
-  private baseUrl = 'https://api.themoviedb.org/3/';
-  private serie = 'tv/'
+  private apikey: string = 'api_key=15e2ef2c6a55de911f80c81d7448459a';
+  private baseUrl: string = 'https://api.themoviedb.org/3/';
+  private serie: string = 'tv/'
+  // private listInfo = {
+  //   userId: '',
+  //   serieId: ''
+  // };
   private sortByPopularity = '&sort_by=popularity.desc';
   private sharedSearchResult: Array<Object> = [];
 
@@ -67,4 +77,15 @@ export class SeriesService {
       })
   }
 
+  //Send to DB
+
+  handleError(e) {
+    return Observable.throw(e.json().message);
+  }
+
+  addToList(userId,serieId) {
+    return this.http.post(`${baseURL}/list`, {data:{userId:userId,serieId:serieId}})
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
 }

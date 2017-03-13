@@ -8,6 +8,7 @@ const cors = require('cors');
 // const index = require('./routes/index');
 // const users = require('./routes/users');
 const userController = require("./api/user/user.controller");
+const listController = require("./api/list/list.controller");
 const session = require("express-session");
 const passport = require("passport");
 require('./config/passport')(passport);
@@ -61,6 +62,7 @@ app.use(passport.session());
 // app.use('/', index);
 // app.use('/users', users);
 app.use('/', userController);
+app.use('/', listController);
 
 
 
