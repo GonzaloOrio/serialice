@@ -9,18 +9,19 @@ listController.post("/list", (req, res, next) => {
   var serieId = req.body.data.serieId;
   console.log(req.body);
   var newList = List({
-      userId,serieId
-    });
+    userId,
+    serieId
+  });
 
-    newList.save((err) => {
-      if (err) {
-        res.status(400).json({
-          message: "Somethingggg went wrong"
-        });
-      } else {
-          res.status(200).json(req.user);}
-      }
-  );
+  newList.save((err) => {
+    if (err) {
+      res.status(400).json({
+        message: "Something went wrong"
+      });
+    } else {
+      res.status(200).json(req.user);
+    }
+  });
 });
 
 module.exports = listController;

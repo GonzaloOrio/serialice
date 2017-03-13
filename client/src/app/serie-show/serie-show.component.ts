@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SeriesService } from "../series.service";
 import { UserSessionService } from "../user-session.service";
+import { LoggedinService } from '../loggedin.service';
 import {Router, ActivatedRoute} from '@angular/router'
 
 @Component({
@@ -16,24 +17,22 @@ export class SerieShowComponent implements OnInit {
   private user: any = {};
   private season: any = {};
   private list: any;
-  // private serieList: any = {
-  //     userId: '',
-  //     serieId: ''
-  //   };
   private error: string;
 
   constructor(
     private seriesService: SeriesService,
     private sessionService: UserSessionService,
-    private route: ActivatedRoute) {
-        // this.user = sessionService.getUser();
+    private route: ActivatedRoute,
+    private router: Router,
+    private loggedin: LoggedinService) {
+        this.user = loggedin.getUser();
     }
 
   ngOnInit() {
-    this.sessionService.isLoggedIn()
-     .subscribe(
-       (user) => this.successCb(user)
-     );
+    // this.sessionService.isLoggedIn()
+    //  .subscribe(
+    //    (user) => this.successCb(user)
+    //  );
 
     this.route.params
       .subscribe((params)=> {
@@ -68,12 +67,14 @@ export class SerieShowComponent implements OnInit {
   errorCb(err) {
     this.error = err;
     this.list = null;
-    console.log("que pasa", err);
+    console.log("que pasa");
+    this.router.navigate(['profile']);
   }
 
   successCb(list) {
     this.list = list;
     this.error = null;
+    this.router.navigate(['profile']);
     console.log("que pasooooooo", list);
 
     // this.router.navigate(['home']);

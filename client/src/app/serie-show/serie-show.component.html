@@ -18,9 +18,10 @@
               <strong>Original Title:</strong> {{serie.name}}
             </li> -->
             <li class="list-group-item serie-info">
-              <strong>Seasons:</strong> {{serie.number_of_seasons}}
-              <!-- <div *ngFor="let season of serie.seasons.season_number">
-              </div> -->
+              <strong>Seasons </strong> {{serie.number_of_seasons}}
+              <!-- <ul *ngFor="let season of serie.seasons">
+                <li class="serie-season">Season {{season.season_number}}</li>
+              </ul> -->
             </li>
             <li class="list-group-item serie-info">
               <strong>Overview:</strong> {{serie.overview}}

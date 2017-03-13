@@ -8,6 +8,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { UserSessionService } from "./user-session.service";
 import { SeriesService } from "./series.service";
+import { LoggedinService } from './loggedin.service';
 
 import { HeaderComponent } from './header/header.component';
 import { LandingComponent } from './landing/landing.component';
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: 'home',  component: HomeComponent },
   { path: 'signup',  component: SignupComponent },
   { path: 'login',  component: LoginComponent },
-  { path: 'logout',  component: LoginComponent },
+  { path: 'logout',  component: LandingComponent },
   { path: 'profile',  component: ProfileComponent },
   { path: 'serie/:id', component: SerieShowComponent }
 
@@ -49,7 +50,11 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [UserSessionService,SeriesService],
+  providers: [
+    UserSessionService,
+    SeriesService,
+    LoggedinService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
