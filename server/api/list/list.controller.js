@@ -1,6 +1,5 @@
 const express = require("express");
 const listController = express.Router();
-
 // Our user model
 const List = require("./list.model");
 
@@ -19,8 +18,20 @@ listController.post("/list", (req, res, next) => {
         message: "Something went wrong"
       });
     } else {
-      res.status(200).json(req.user);
+      res.status(200).json({message: "add good"});
     }
+  });
+});
+
+listController.get("/list", (req, res, next) => {
+  console.log("pasa por aqui 1");
+  List.find({}, (err, series) => {
+    console.log("pasa por aqui 2");
+    if (err) {
+      return res.json(err).status(500);
+    }
+    console.log("Sii! p.por aqui" + series);
+    return res.json(series);
   });
 });
 

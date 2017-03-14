@@ -2,26 +2,47 @@ import { Component, OnInit } from '@angular/core';
 import { SeriesService } from "../series.service";
 import { UserSessionService } from "../user-session.service";
 import {Router, ActivatedRoute} from '@angular/router'
+import { LoggedinService } from '../loggedin.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  providers: [UserSessionService]
+  providers: [UserSessionService, SeriesService]
 })
 export class ProfileComponent implements OnInit {
   user: any;
   error: string;
-  constructor(private session : UserSessionService, private route: ActivatedRoute) {
-    // session.getEmitter().subscribe((user) => {this.user = user});
-   }
+  serie: any;
+  list : any;
+  constructor(private session : UserSessionService, private seriesService: SeriesService, private router: Router, private route: ActivatedRoute, private loggedin: LoggedinService) {
+    this.user = loggedin.getUser();
+  }
 
   ngOnInit() {
     this.session.isLoggedIn()
      .subscribe(
-       (user) => this.successCb(user)
+       (user) => this.successCb(user),
+       (err) => this.errorCb(err)
      );
-     console.log("user" + this.user);
+
+    this.seriesService.getList()
+      .subscribe((list) => {
+        this.list = list});
+
+    setTimeout(()=> {this.seriesService.getSerieDetails(this.list.serieId)
+      .subscribe(result => this.serie = result)},2000);
+
+    // this.route.params
+    //   .subscribe((params)=> {
+    //     this.serieId = params['id'];
+    //   });
+
+    // this.route.params
+    //   .map(params => params['id'])
+    //   .switchMap(id => this.seriesService.getSerieDetails(id))
+    //   .subscribe(result => this.serie = result);
+
     //  this.route.params
     //    .map(params => params['user'])
     //    .switchMap(user => this.session.getUser())

@@ -37,7 +37,7 @@ constructor(private http: Http) { }
   }
 
   isLoggedIn() {
-    return this.http.get(`${baseURL}/loggedin`,{withCredentials:true})
+    return this.http.get(`${baseURL}/loggedin`, {withCredentials:true})
       .map(res => res.json())
       .catch((err) => this.handleError(err));
   }

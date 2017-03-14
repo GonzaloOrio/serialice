@@ -79,13 +79,20 @@ export class SeriesService {
 
   //Send to DB
 
-  handleError(e) {
+  public handleError(e) {
     return Observable.throw(e.json().message);
   }
 
-  addToList(userId,serieId) {
+  public addToList(userId,serieId) {
     return this.http.post(`${baseURL}/list`, {data:{userId:userId,serieId:serieId}})
       .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  public getList() {
+    console.log(`${baseURL}/list`)
+    return this.http.get(`${baseURL}/list`)
+      .map((result) => result.json())
       .catch(this.handleError);
   }
 }

@@ -2,8 +2,6 @@
 
 <div *ngIf="serie" class="serie-body">
   <div class="serie-wrap">
-
-    <div class="">
       <div class="row">
 
         <div class="col-md-4 col-md-offset-2 text-center">
@@ -14,9 +12,7 @@
         <div class="col-md-4 text-center">
           <h2 class="serie-name">{{serie.name}}</h2>
           <ul class="list-group serie-poster-container">
-            <!-- <li class="list-group-item">
-              <strong>Original Title:</strong> {{serie.name}}
-            </li> -->
+
             <li class="list-group-item serie-info">
               <strong>Seasons </strong> {{serie.number_of_seasons}}
               <!-- <ul *ngFor="let season of serie.seasons">
@@ -26,25 +22,17 @@
             <li class="list-group-item serie-info">
               <strong>Overview:</strong> {{serie.overview}}
             </li>
-            <!-- <li class="list-group-item">
-              <strong>Budget:</strong> {{serie.budget}}
-            </li> -->
+
             <li class="list-group-item serie-info">
               <strong>Genres:</strong> <span *ngFor="let gen of serie.genres">{{gen.name}} </span>
             </li>
-            <!-- <li class="list-group-item">
-              <strong>Release Date:</strong> {{serie.release_date}}
-            </li> -->
+
             <li class="list-group-item serie-info">
               <strong>Rating:</strong> {{serie.vote_average}}
             </li>
-            <!-- <li class="list-group-item serie-info">
-              <strong>Rating count:</strong> {{serie.vote_count}}
-            </li> -->
           </ul>
 
           <button class="btn serie-btn-add-list btn-block" (click)="addToMyList()">Add to my list</button>
-          <!-- <a *ngIf="serie.homepage" href="#" class="btn serie-btn-add-list btn-block">Add to my list</a> -->
           <a *ngIf="serie.homepage" href="{{serie.homepage}}" target="_blank" class="btn serie-btn-homepage btn-block">Serie Homepage</a>
         </div>
       </div>
@@ -71,6 +59,5 @@
       </div>
     </div>
   </div>
-
 </div>
 </div>

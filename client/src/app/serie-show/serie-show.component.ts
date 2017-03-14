@@ -13,7 +13,7 @@ import {Router, ActivatedRoute} from '@angular/router'
 export class SerieShowComponent implements OnInit {
   private similarSeries: Array<Object> = [];
   private serie: any = {};
-  private serieId: String;
+  // private serieId: String;
   private user: any = {};
   private season: any = {};
   private list: any;
@@ -34,10 +34,10 @@ export class SerieShowComponent implements OnInit {
     //    (user) => this.successCb(user)
     //  );
 
-    this.route.params
-      .subscribe((params)=> {
-        this.serieId = params['id'];
-      });
+    // this.route.params
+    //   .subscribe((params)=> {
+    //     this.serieId = params['id'];
+    //   });
 
     this.route.params
       .map(params => params['id'])
@@ -67,15 +67,13 @@ export class SerieShowComponent implements OnInit {
   errorCb(err) {
     this.error = err;
     this.list = null;
-    console.log("que pasa");
-    this.router.navigate(['profile']);
   }
 
   successCb(list) {
     this.list = list;
     this.error = null;
+    console.log("pasooooooo!!!", list);
     this.router.navigate(['profile']);
-    console.log("que pasooooooo", list);
 
     // this.router.navigate(['home']);
   }

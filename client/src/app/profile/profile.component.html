@@ -1,9 +1,41 @@
 <section class="profile-bg">
-  <div *ngIf="user" class="profile-wrap">
-    <div class="profile-avatar">
-      <img [src]="user.imgUrl" alt="img profile">
+  <header class="profile-bg">
+    <div *ngIf="user" class="profile-wrap">
+      <div class="profile-avatar">
+        <img [src]="user.imgUrl" alt="img profile">
+      </div>
+      <h3 class="profile-name">{{user.username}}</h3>
+      <h2 class="serie-list">My series list</h2>
     </div>
-    <h3 class="profile-name">{{user.username}}</h3>
-    <h2 class="serie-list">My series list</h2>
-  </div>
+  </header>
+  <article *ngIf="list">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-2 text-center">
+        <img *ngIf="serie.poster_path" class="img-thumbnail serie-poster" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+        <img *ngIf="!serie.poster_path" class="img-thumbnail serie-poster" src="http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+      </div>
+      <div class="col-md-4 text-center">
+        <h2 class="serie-name">{{serie.name}}</h2>
+        <ul class="list-group serie-poster-container">
+          <li class="list-group-item serie-info">
+            <strong>Seasons </strong> {{serie.number_of_seasons}}
+          </li>
+          <li class="list-group-item serie-info">
+            <strong>Overview:</strong> {{serie.overview}}
+          </li>
+
+          <li class="list-group-item serie-info">
+            <strong>Genres:</strong> <span *ngFor="let gen of serie.genres">{{gen.name}} </span>
+          </li>
+
+          <li class="list-group-item serie-info">
+            <strong>Rating:</strong> {{serie.vote_average}}
+          </li>
+        </ul>
+
+        <button class="btn serie-btn-add-list btn-block" (click)="addToMyList()">Add to my list</button>
+        <a *ngIf="serie.homepage" href="{{serie.homepage}}" target="_blank" class="btn serie-btn-homepage btn-block">Serie Homepage</a>
+      </div>
+    </div>
+  </article>
 </section>
