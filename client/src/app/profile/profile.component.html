@@ -8,15 +8,14 @@
       <h2 class="serie-list">My series list</h2>
     </div>
   </header>
-  <article *ngIf="list">
-    <div class="row" *ngIf="seriesList">
-      <div *ngFor="let serie of seriesList, let i = index" class="col-md-3 col-sm-4 text-center">
-          <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-          <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="https://www.clapsnslaps.com/assets/images/noposter1.jpg">
-        <h4 class="text-center serie-name">{{serie.name}}</h4>
-        <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
-      </div>
+  <div class="row" *ngIf="seriesList">
+    <div *ngFor="let serie of seriesList, let i = index" class="col-md-3 col-sm-4 text-center">
+        <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+        <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="https://www.clapsnslaps.com/assets/images/noposter1.jpg">
+      <h4 class="text-center serie-name">{{serie.name}}</h4>
+      <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
     </div>
+  </div>
     <!-- <div class="row">
       <div class="col-md-4 col-md-offset-2 text-center">
         <img *ngIf="serie.poster_path" class="img-thumbnail serie-poster" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
@@ -45,5 +44,4 @@
         <a *ngIf="serie.homepage" href="{{serie.homepage}}" target="_blank" class="btn serie-btn-homepage btn-block">Serie Homepage</a>
       </div>
     </div> -->
-  </article>
 </section>

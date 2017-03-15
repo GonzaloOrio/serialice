@@ -23,9 +23,12 @@ listController.post("/list", (req, res, next) => {
   });
 });
 
-listController.get("/list", (req, res, next) => {
+listController.get("/list/:userId", (req, res, next) => {
   console.log("pasa por aqui 1");
-  List.find({}, (err, series) => {
+  let userId = req.params.userId;
+  console.log(userId);
+  // User.find({ userId: 'userId' });
+  List.find({userId}, (err, series) => {
     console.log("pasa por aqui 2");
     if (err) {
       return res.json(err).status(500);
@@ -34,5 +37,16 @@ listController.get("/list", (req, res, next) => {
     return res.json(series);
   });
 });
+
+// listController.get("/list/:id", (req, res, next) => {
+//   console.log("pasa por aqui 1");
+//   List.find({}, (err, series) => {
+//     if (err) {
+//       return res.json(err).status(500);
+//     }
+//     console.log("Sii! p.por aqui" + series);
+//     return res.json(series);
+//   });
+// });
 
 module.exports = listController;

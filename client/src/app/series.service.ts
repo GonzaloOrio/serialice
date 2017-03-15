@@ -96,8 +96,10 @@ export class SeriesService {
       .catch(this.handleError);
   }
 
-  public getList(){
-    return this.http.get(`${baseURL}/list`)
+  public getList(userId){
+    // NOTE: IMPLEMENTAR SOLO LAS SERIES DE UN USUARIO
+    // console.log(`Getting series from user_id: ${user_id}`);
+    return this.http.get(`${baseURL}/list/${userId}`)
       .map((result) => result.json())
       .catch(this.handleError);
   }
