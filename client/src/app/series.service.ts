@@ -33,26 +33,31 @@ export class SeriesService {
   public getPopularSeries() {
     return this.http.get(this.baseUrl + this.serie + 'popular?' + this.apikey)
       .map(result => result.json())
+      .catch(this.handleError);
   }
 
   public getTopRatedSeries() {
     return this.http.get(this.baseUrl + this.serie + 'top_rated?' + this.apikey)
       .map(result => result.json())
+      .catch(this.handleError);
   }
 
   public getNowPlayingSeries() {
     return this.http.get(this.baseUrl + this.serie + 'on_the_air?' + this.apikey)
       .map(result => result.json())
+      .catch(this.handleError);
   }
 
   public searchSeries(query) {
     return this.http.get(this.baseUrl + 'search/tv?'+ this.apikey + '&query=' + query + this.sortByPopularity)
       .map(result => result.json())
+      .catch(this.handleError);
   }
 
   public getSerieDetails(id) {
     return this.http.get(this.baseUrl + this.serie + id + '?'+this.apikey)
       .map(result => result.json())
+      .catch(this.handleError);
   }
 
   // public getSerieSeasonDetails(id,season) {
@@ -63,11 +68,13 @@ export class SeriesService {
   public getSimilarSeries(id) {
     return this.http.get(this.baseUrl + this.serie +  id + '/similar?' + this.apikey)
       .map(result => result.json())
+      .catch(this.handleError);
   }
 
   public getSerieReviews(id) {
     return this.http.get(this.baseUrl + this.serie + id + '/reviews?' + this.apikey)
       .map(result => result.json())
+      .catch(this.handleError);
   }
 
   public sharedSearchSeries(searchQuery) {
@@ -77,7 +84,7 @@ export class SeriesService {
       })
   }
 
-  //Send to DB
+  //DataBase Functions
 
   public handleError(e) {
     return Observable.throw(e.json().message);
@@ -89,8 +96,7 @@ export class SeriesService {
       .catch(this.handleError);
   }
 
-  public getList() {
-    console.log(`${baseURL}/list`)
+  public getList(){
     return this.http.get(`${baseURL}/list`)
       .map((result) => result.json())
       .catch(this.handleError);

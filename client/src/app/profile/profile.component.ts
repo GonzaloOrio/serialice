@@ -14,7 +14,11 @@ export class ProfileComponent implements OnInit {
   user: any;
   error: string;
   serie: any;
-  list : any;
+  serieId: string;
+  userSerieId: string;
+  isView: boolean;
+  list: any;
+  seriesList: any;
   constructor(private session : UserSessionService, private seriesService: SeriesService, private router: Router, private route: ActivatedRoute, private loggedin: LoggedinService) {
     this.user = loggedin.getUser();
   }
@@ -28,10 +32,17 @@ export class ProfileComponent implements OnInit {
 
     this.seriesService.getList()
       .subscribe((list) => {
-        this.list = list});
+        this.list = list;
+        this.serieId = list.serieId;
+        // this.userSerieId = list.userId;
+        // this.isView = list.isView;
+        console.log(list, list[1].serieId);
+        this.showSeries();
+      });
 
-    setTimeout(()=> {this.seriesService.getSerieDetails(this.list.serieId)
-      .subscribe(result => this.serie = result)},2000);
+
+    // setTimeout(()=> {this.seriesService.getSerieDetails(this.list.serieId)
+    //   .subscribe(result => this.serie = result)},5000);
 
     // this.route.params
     //   .subscribe((params)=> {
@@ -48,6 +59,30 @@ export class ProfileComponent implements OnInit {
     //    .switchMap(user => this.session.getUser())
     //    .subscribe(result => this.user = result);
   }
+
+  showSeries(){
+    for(let i = 0; i < this.list.length;i++){
+      return this.seriesService.getSerieDetails(this.list[i].serieId)
+         .subscribe(result => this.seriesList = result)
+    };
+    // this.list.forEach((serie)=>{
+    //   this.seriesService.getSerieDetails(this.list.serieId)
+    //      .subscribe(result => this.serie = result)
+    // });
+  }
+
+  // showSeries(){
+  //   for(let i = 0; i < this.list.length;i++){
+  //     this.seriesUser.push(this.seriesService.getSerieDetails(this.list[i].serieId));
+  //       //  .subscribe(result => this.seriesList = result)
+  //   };
+  //
+  //   this.seriesUser.subscribe(result => this.seriesList = result)
+  //   // this.list.forEach((serie)=>{
+  //   //   this.seriesService.getSerieDetails(this.list.serieId)
+  //   //      .subscribe(result => this.serie = result)
+  //   // });
+  // }
 
   errorCb(err) {
     this.error = err;

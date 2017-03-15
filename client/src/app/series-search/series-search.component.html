@@ -2,21 +2,19 @@
   <div class="wrap-search">
     <div class="panel-heading">
       <h3 class="section-search">Search Results</h3>
-        <a (click)="removeSearchResults()" class="btn pull-right search-result-remove-btn">
+        <a (click)="removeSearchResults()" class="close-search-container">
           <span class="glyphicon glyphicon-remove close-search"></span>
         </a>
     </div>
     <div class="panel-body">
       <div class="row search">
-        <div *ngFor="let serie of seriesService.sharedSearchResult, let i = index">
-          <div class="col-md-2 text-center arrange">
+        <div *ngFor="let serie of seriesService.sharedSearchResult, let i = index" class="col-md-3 col-sm-4 text-center">
             <a routerLink="/serie/{{serie.id}}" >
               <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-              <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+              <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="https://www.clapsnslaps.com/assets/images/noposter1.jpg">
             </a>
             <h4 class="text-center serie-name">{{serie.name}}</h4>
             <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
-          </div>
         </div>
       </div>
     </div>

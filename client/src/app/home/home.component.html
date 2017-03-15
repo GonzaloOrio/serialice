@@ -23,7 +23,7 @@
       <div *ngFor="let serie of popularSeries, let i = index" class="col-md-3 col-sm-4 text-center">
         <a routerLink="/serie/{{serie.id}}" *ngIf="i < 20">
           <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-          <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+          <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="https://www.clapsnslaps.com/assets/images/noposter1.jpg">
         </a>
         <h4 class="text-center serie-name">{{serie.name}}</h4>
         <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
@@ -36,7 +36,7 @@
       <div *ngFor="let serie of topRatedSeries, let i = index" class="col-md-3 col-sm-4 text-center">
         <a routerLink="/serie/{{serie.id}}" *ngIf="i < 20">
           <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-          <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+          <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="https://www.clapsnslaps.com/assets/images/noposter1.jpg">
         </a>
         <h4 class="text-center serie-name">{{serie.name}}</h4>
         <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
@@ -49,7 +49,7 @@
       <div *ngFor="let serie of nowPlayingSeries, let i = index" class="col-md-3 col-sm-4 text-center">
           <a routerLink="/serie/{{serie.id}}"  *ngIf="i < 20">
             <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-            <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="http://http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+            <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="https://www.clapsnslaps.com/assets/images/noposter1.jpg">
           </a>
           <h4 class="text-center serie-name">{{serie.name}}</h4>
           <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->

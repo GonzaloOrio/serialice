@@ -7,6 +7,14 @@
   border-color: #d86e3c;
 }
 
+.navbar-logo{
+}
+
+.navbar-logo > img{
+  width: 80px;
+  padding-top: 8px;
+}
+
 .logout-button {
     align-items: flex-start;
     text-align: center;

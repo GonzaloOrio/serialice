@@ -9,10 +9,10 @@
   <header id="home-nav" class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse">
     <div class="container-fluid">
       <div *ngIf="!user" class="navbar-header my-nav">
-        <a class="navbar-brand" [routerLink]="['/']">Logo</a>
+        <a class="navbar-logo" [routerLink]="['/']"><img src="../../assets/logo_black.svg" alt="inPause logo"></a>
       </div>
       <div *ngIf="user" class="navbar-header my-nav">
-        <a class="navbar-brand" [routerLink]="['/home']">Logo</a>
+        <a class="navbar-logo" [routerLink]="['/home']"><img src="../../assets/logo_black.svg" alt="inPause logo"></a>
       </div>
       <ul *ngIf="!user" class="nav navbar-nav navbar-right">
         <li><a [routerLink]="['/signup']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
