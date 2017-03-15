@@ -97,10 +97,14 @@ export class SeriesService {
   }
 
   public getList(userId){
-    // NOTE: IMPLEMENTAR SOLO LAS SERIES DE UN USUARIO
-    // console.log(`Getting series from user_id: ${user_id}`);
     return this.http.get(`${baseURL}/list/${userId}`)
       .map((result) => result.json())
       .catch(this.handleError);
+  }
+
+  public deleteMySerie(serieId,userId) {
+    return this.http.post(`${baseURL}/list/:realationId`, {data:{userId:userId,serieId:serieId}})
+      .map((res) => res.json())
+      .catch((err) => Observable.throw(err.json()));
   }
 }

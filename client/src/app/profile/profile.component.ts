@@ -13,9 +13,11 @@ import { Observable } from 'rxjs/Rx';
   providers: [UserSessionService, SeriesService]
 })
 export class ProfileComponent implements OnInit {
-
-  user: any;
-  seriesList: any;
+  private user: any;
+  private seriesList: any;
+  private options: any;
+  private error: string;
+  private serie: any;
 
   constructor(private session : UserSessionService, private seriesService: SeriesService, private router: Router, private route: ActivatedRoute, private loggedin: LoggedinService) {
     this.user = loggedin.getUser();
@@ -27,7 +29,7 @@ export class ProfileComponent implements OnInit {
       this.user = user;
       return this.seriesService.getList(user._id)
     })
-    .map((list) => list.map((o) => o.serieId))
+    .map((list) => list.map((o) => {console.log("objeto recibido: " + o.isView); this.options = o ; return o.serieId}))
     .flatMap((idList)=> Observable.forkJoin(idList.map((id) => this.seriesService.getSerieDetails(id))))
     .subscribe((seriesListProcessed) => {
       console.log(seriesListProcessed);
@@ -53,6 +55,27 @@ export class ProfileComponent implements OnInit {
         this.list = list;
         //this.showSeries();
       });*/
+  }
+
+  deleteToMyList(serieId,userId) {
+    this.seriesService.deleteMySerie(serieId,userId)
+      .subscribe(
+        (serie) => this.successCb(serie),
+        (err) => this.errorCb(err)
+      );
+  }
+
+  errorCb(err) {
+    this.error = err;
+    this.serie = null;
+  }
+
+  successCb(serie) {
+    this.serie = serie;
+    this.error = null;
+    this.router.navigate(['profile']);
+
+    // this.router.navigate(['home']);
   }
 
   /*showSeries(){

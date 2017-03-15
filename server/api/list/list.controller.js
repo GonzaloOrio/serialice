@@ -4,10 +4,9 @@ const listController = express.Router();
 const List = require("./list.model");
 
 listController.post("/list", (req, res, next) => {
-  var userId = req.body.data.userId;
-  var serieId = req.body.data.serieId;
-  console.log(req.body);
-  var newList = List({
+  const userId = req.body.data.userId;
+  const serieId = req.body.data.serieId;
+  const newList = List({
     userId,
     serieId
   });
@@ -24,18 +23,29 @@ listController.post("/list", (req, res, next) => {
 });
 
 listController.get("/list/:userId", (req, res, next) => {
-  console.log("pasa por aqui 1");
-  let userId = req.params.userId;
-  console.log(userId);
-  // User.find({ userId: 'userId' });
+  const userId = req.params.userId;
   List.find({userId}, (err, series) => {
-    console.log("pasa por aqui 2");
     if (err) {
       return res.json(err).status(500);
     }
-    console.log("Sii! p.por aqui" + series);
     return res.json(series);
   });
+});
+
+listController.post('/list/:realationId', (req, res, next) => {
+  const userId = req.body.data.userId;
+  const serieId = req.body.data.serieId;
+
+  List.findOneAndRemove(userId, serieId, (err, serie) => {
+    if (err) {
+      res.status(400).json({
+        message: "Something went wrong"
+      });
+    } else {
+      res.status(200).json({message: "delete good"});
+    }
+  });
+
 });
 
 // listController.get("/list/:id", (req, res, next) => {
