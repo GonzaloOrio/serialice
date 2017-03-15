@@ -1,45 +1,38 @@
-.my-nav{
-  color: #FFF;
-}
-
-.navbar-inverse{
+.navbar-my-tune{
+  border-radius: inherit;
   background-color: #d86e3c;
   border-color: #d86e3c;
 }
 
+.my-nav, .logout-button:hover, .navbar-inverse .navbar-nav>li>a:hover{
+  color: #FFF;
+}
+
 .navbar-logo{
+  padding-left: 20px;
 }
 
 .navbar-logo > img{
-  width: 80px;
-  padding-top: 8px;
+  width: 70px;
+  padding-top: 12px;
 }
 
 .logout-button {
-    align-items: flex-start;
-    text-align: center;
-    cursor: pointer;
-    color: #000;
-    background-color: inherit;;
-    box-sizing: none;
-    padding-top: 15px;
-    border-width: 2px;
-    border-style: inherit;
-    border-color: inherit;
-    border-image: inherit;
-}
-
-.logout-button:hover{
-    color: #FFF;
-
+  align-items: flex-start;
+  text-align: center;
+  cursor: pointer;
+  color: #000;
+  background-color: inherit;;
+  box-sizing: none;
+  padding-top: 15px;
+  border-width: 2px;
+  border-style: inherit;
+  border-color: inherit;
+  border-image: inherit;
 }
 
 .navbar-inverse .navbar-brand, .navbar-nav>li>a{
   color: #000;
-}
-
-.navbar-inverse .navbar-nav>li>a:hover{
-  color: #FFF;
 }
 
 .nav>li{

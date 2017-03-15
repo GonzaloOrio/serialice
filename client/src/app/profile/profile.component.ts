@@ -29,10 +29,10 @@ export class ProfileComponent implements OnInit {
       this.user = user;
       return this.seriesService.getList(user._id)
     })
-    .map((list) => list.map((o) => {console.log("objeto recibido: " + o.isView); this.options = o ; return o.serieId}))
+    .map((list) => list.map((o) => {this.options = o ; return o.serieId}))
     .flatMap((idList)=> Observable.forkJoin(idList.map((id) => this.seriesService.getSerieDetails(id))))
     .subscribe((seriesListProcessed) => {
-      console.log(seriesListProcessed);
+      // console.log(seriesListProcessed);
       this.seriesList = seriesListProcessed;
     });
 
@@ -60,23 +60,22 @@ export class ProfileComponent implements OnInit {
   deleteToMyList(serieId,userId) {
     this.seriesService.deleteMySerie(serieId,userId)
       .subscribe(
-        (serie) => this.successCb(serie),
+        response => this.router.navigate(['home']),
         (err) => this.errorCb(err)
       );
   }
 
   errorCb(err) {
     this.error = err;
-    this.serie = null;
   }
 
-  successCb(serie) {
-    this.serie = serie;
-    this.error = null;
-    this.router.navigate(['profile']);
-
-    // this.router.navigate(['home']);
-  }
+  // successCb(serie) {
+  //   this.serie = serie;
+  //   this.error = null;
+  //   this.router.navigate(['home']);
+  //
+  //   // this.router.navigate(['home']);
+  // }
 
   /*showSeries(){
     for(let i = 0; i < this.list.length;i++){

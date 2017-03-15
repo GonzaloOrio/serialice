@@ -37,42 +37,23 @@
           <li class="list-group-item serie-info">
             <strong>Rating:</strong> {{serie.vote_average}}
           </li>
+          <button *ngIf="options.isView === false" class="btn serie-btn-add-list btn-block" (click)="addToMyList()">Yet don't saw</button>
+          <button *ngIf="options.isView === true" class="btn serie-btn-add-list btn-block" (click)="addToMyList()">Yet don't saw</button>
+          <button class="btn serie-btn-delete btn-block" (click)="deleteToMyList(serie.id,user._id)">Delete It</button>
         </ul>
       </div>
-      <div class="col-xs-12 text-center">
-        <button *ngIf="options.isView === false" class="btn serie-btn-add-list btn-block" (click)="addToMyList()">Yet don't saw</button>
-        <button *ngIf="options.isView === true" class="btn serie-btn-add-list btn-block" (click)="addToMyList()">Yet don't saw</button>
-        <button class="btn serie-btn-delete btn-block" (click)="deleteToMyList(serie.id,user._id)">Delete It</button>
-      </div>
-      <!-- <p class="text-center"><strong>Rating: </strong>{{serie.vote_average}}</p> -->
+      <!-- <section class="col-xs-12">
+          <ul *ngFor="let episodes of serie.seasons" class="list-group-item serie-info col-md-1 col-sm-2 col-xs-6 text-center">
+            <img *ngIf="episodes.poster_path" class="img-thumbnail poster-season-img" src="https://image.tmdb.org/t/p/w300/{{episodes.poster_path}}">
+            <img *ngIf="!episodes.poster_path" class="img-thumbnail poster-season-img" src="https://www.clapsnslaps.com/assets/images/noposter1.jpg">
+            <li class="list-group-item serie-info">
+              <strong>Season: </strong> {{episodes.season_number}}
+            </li>
+            <li class="list-group-item serie-info">
+              <strong>Episodes: </strong> {{episodes.episode_count}}
+            </li>
+          </ul>
+      </section> -->
     </div>
   </div>
-    <!-- <div class="row">
-      <div class="col-md-4 col-md-offset-2 text-center">
-        <img *ngIf="serie.poster_path" class="img-thumbnail serie-poster" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
-        <img *ngIf="!serie.poster_path" class="img-thumbnail serie-poster" src="http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
-      </div>
-      <div class="col-md-4 text-center">
-        <h2 class="serie-name">{{user.username}}</h2>
-        <ul class="list-group serie-poster-container">
-          <li class="list-group-item serie-info">
-            <strong>Seasons </strong> {{serie.number_of_seasons}}
-          </li>
-          <li class="list-group-item serie-info">
-            <strong>Overview:</strong> {{serie.overview}}
-          </li>
-
-          <li class="list-group-item serie-info">
-            <strong>Genres:</strong> <span *ngFor="let gen of serie.genres">{{gen.name}} </span>
-          </li>
-
-          <li class="list-group-item serie-info">
-            <strong>Rating:</strong> {{serie.vote_average}}
-          </li>
-        </ul>
-
-        <button class="btn serie-btn-add-list btn-block" (click)="addToMyList()">Add to my list</button>
-        <a *ngIf="serie.homepage" href="{{serie.homepage}}" target="_blank" class="btn serie-btn-homepage btn-block">Serie Homepage</a>
-      </div>
-    </div> -->
 </section>

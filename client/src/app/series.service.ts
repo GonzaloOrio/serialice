@@ -103,7 +103,7 @@ export class SeriesService {
   }
 
   public deleteMySerie(serieId,userId) {
-    return this.http.post(`${baseURL}/list/:realationId`, {data:{userId:userId,serieId:serieId}})
+    return this.http.post(`${baseURL}/list/:relationId`, {data:{userId:userId,serieId:serieId}})
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
   }

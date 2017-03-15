@@ -17,14 +17,18 @@ listController.post("/list", (req, res, next) => {
         message: "Something went wrong"
       });
     } else {
-      res.status(200).json({message: "add good"});
+      res.status(200).json({
+        message: "add good"
+      });
     }
   });
 });
 
 listController.get("/list/:userId", (req, res, next) => {
   const userId = req.params.userId;
-  List.find({userId}, (err, series) => {
+  List.find({
+    userId
+  }, (err, series) => {
     if (err) {
       return res.json(err).status(500);
     }
@@ -32,17 +36,24 @@ listController.get("/list/:userId", (req, res, next) => {
   });
 });
 
-listController.post('/list/:realationId', (req, res, next) => {
+listController.post('/list/:relationId', (req, res, next) => {
+  console.log("hola");
   const userId = req.body.data.userId;
   const serieId = req.body.data.serieId;
+  console.log(userId, serieId);
 
-  List.findOneAndRemove(userId, serieId, (err, serie) => {
+  List.findOneAndRemove({
+    userId,
+    serieId
+  }, (err, serie) => {
     if (err) {
       res.status(400).json({
         message: "Something went wrong"
       });
     } else {
-      res.status(200).json({message: "delete good"});
+      res.status(200).json({
+        message: "delete good"
+      });
     }
   });
 

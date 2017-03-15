@@ -72,7 +72,6 @@ export class SerieShowComponent implements OnInit {
   successCb(list) {
     this.list = list;
     this.error = null;
-    console.log("pasooooooo!!!", list);
     this.router.navigate(['profile']);
 
     // this.router.navigate(['home']);
