@@ -1,4 +1,7 @@
 <section class="search-nav">
+  <div class="logo-home">
+    <img src="../../assets/logo_white.svg" alt="inPause logo">
+  </div>
   <form class="form-wrapper cf" (submit)="searchSeries()">
     <input name="searchQuery" type="text" placeholder="Search Your Series here..." autocomplete="off" [(ngModel)]="searchQuery" (keyup)="autocompleteSearchSeries()">
     <button type="submit">Search</button>

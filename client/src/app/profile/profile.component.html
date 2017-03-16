@@ -37,9 +37,9 @@
           <li class="list-group-item serie-info">
             <strong>Rating:</strong> {{serie.vote_average}}
           </li>
-          <button *ngIf="options.isView === false" class="btn serie-btn-add-list btn-block" (click)="addToMyList()">Yet don't saw</button>
-          <button *ngIf="options.isView === true" class="btn serie-btn-add-list btn-block" (click)="addToMyList()">Yet don't saw</button>
-          <button class="btn serie-btn-delete btn-block" (click)="deleteToMyList(serie.id,user._id)">Delete It</button>
+          <button *ngIf="serie.isView === false" class="btn serie-btn-to-see btn-block" (click)="notSerieSaw(serie.databaseID)">Pending to See</button>
+          <button *ngIf="serie.isView === true" class="btn serie-btn-serie-saw btn-block" (click)="serieSaw(serie.databaseID)">Already Saw</button>
+          <button class="btn serie-btn-delete btn-block" (click)="deleteToMyList(serie.databaseID)">Delete It</button>
         </ul>
       </div>
       <!-- <section class="col-xs-12">

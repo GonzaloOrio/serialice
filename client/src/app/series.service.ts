@@ -10,13 +10,9 @@ const baseURL = "http://localhost:3000"
 
 @Injectable()
 export class SeriesService {
-  private apikey: string = 'api_key=15e2ef2c6a55de911f80c81d7448459a';
+  private apikey: string = '15e2ef2c6a55de911f80c81d7448459a';
   private baseUrl: string = 'https://api.themoviedb.org/3/';
   private serie: string = 'tv/'
-  // private listInfo = {
-  //   userId: '',
-  //   serieId: ''
-  // };
   private sortByPopularity = '&sort_by=popularity.desc';
   private sharedSearchResult: Array<Object> = [];
 
@@ -31,31 +27,31 @@ export class SeriesService {
   }
 
   public getPopularSeries() {
-    return this.http.get(this.baseUrl + this.serie + 'popular?' + this.apikey)
+    return this.http.get(this.baseUrl + this.serie + 'popular?api_key=' + this.apikey)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
   public getTopRatedSeries() {
-    return this.http.get(this.baseUrl + this.serie + 'top_rated?' + this.apikey)
+    return this.http.get(this.baseUrl + this.serie + 'top_rated?api_key=' + this.apikey)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
   public getNowPlayingSeries() {
-    return this.http.get(this.baseUrl + this.serie + 'on_the_air?' + this.apikey)
+    return this.http.get(this.baseUrl + this.serie + 'on_the_air?api_key=' + this.apikey)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
   public searchSeries(query) {
-    return this.http.get(this.baseUrl + 'search/tv?'+ this.apikey + '&query=' + query + this.sortByPopularity)
+    return this.http.get(this.baseUrl + 'search/tv?api_key='+ this.apikey + '&query=' + query + this.sortByPopularity)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
   public getSerieDetails(id) {
-    return this.http.get(this.baseUrl + this.serie + id + '?'+this.apikey)
+    return this.http.get(this.baseUrl + this.serie + id + '?api_key='+this.apikey)
       .map(result => result.json())
       .catch(this.handleError);
   }
@@ -66,13 +62,13 @@ export class SeriesService {
   // }
 
   public getSimilarSeries(id) {
-    return this.http.get(this.baseUrl + this.serie +  id + '/similar?' + this.apikey)
+    return this.http.get(this.baseUrl + this.serie +  id + '/similar?api_key=' + this.apikey)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
   public getSerieReviews(id) {
-    return this.http.get(this.baseUrl + this.serie + id + '/reviews?' + this.apikey)
+    return this.http.get(this.baseUrl + this.serie + id + '/reviews?api_key=' + this.apikey)
       .map(result => result.json())
       .catch(this.handleError);
   }
@@ -102,8 +98,8 @@ export class SeriesService {
       .catch(this.handleError);
   }
 
-  public deleteMySerie(serieId,userId) {
-    return this.http.post(`${baseURL}/list/:relationId`, {data:{userId:userId,serieId:serieId}})
+  public deleteMySerie(databaseID) {
+    return this.http.delete(`${baseURL}/list/${databaseID}`)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
   }

@@ -36,16 +36,10 @@ listController.get("/list/:userId", (req, res, next) => {
   });
 });
 
-listController.post('/list/:relationId', (req, res, next) => {
-  console.log("hola");
-  const userId = req.body.data.userId;
-  const serieId = req.body.data.serieId;
-  console.log(userId, serieId);
-
-  List.findOneAndRemove({
-    userId,
-    serieId
-  }, (err, serie) => {
+listController.delete('/list/:id', (req, res, next) => {
+  console.log("pasa por aqui");
+  const relationId = req.params.id;
+  List.findByIdAndRemove(relationId, (err) => {
     if (err) {
       res.status(400).json({
         message: "Something went wrong"
@@ -58,6 +52,7 @@ listController.post('/list/:relationId', (req, res, next) => {
   });
 
 });
+
 
 // listController.get("/list/:id", (req, res, next) => {
 //   console.log("pasa por aqui 1");

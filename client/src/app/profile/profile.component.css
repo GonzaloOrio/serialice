@@ -69,7 +69,7 @@
 }
 
 .serie-name{
-  padding:15px 30px;
+  padding:0 30px 10px 30px;
   font-size: 2.2rem;
 }
 
@@ -80,32 +80,94 @@
   border-radius: inherit;
 }
 
-.serie-btn-add-list {
-    background-color: #0e209a;
-    border-color: #0e209a;
+/*///////////////////////////////////////////////////////////////////////////////////////*/
+
+/*.button{
+  background-image: -webkit-linear-gradient(top, #f4f1ee, #fff);
+  background-image: linear-gradient(top, #f4f1ee, #fff);
+  border-radius: 50%;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .3), inset 0px 4px 1px 1px white, inset 0px -3px 1px 1px rgba(204,198,197,.5);
+  float:left;
+  height: 70px;
+  margin: 0 30px 30px 0;
+  position: relative;
+  width: 70px;
+  -webkit-transition: all .1s linear;
+  transition: all .1s linear;
 }
 
-.serie-btn-add-list:hover {
-    background-color: #2243f1;
-    border-color: #2243f1;
+.button:after{
+  color:#e9e6e4;
+  content: "";
+  display: block;
+  font-size: 30px;
+  height: 30px;
+  text-decoration: none;
+  text-shadow: 0px -1px 1px #bdb5b4, 1px 1px 1px white;
+  position: absolute;
+  width: 30px;
+}
+
+.tick:after{
+  content: "✔";
+  left:23px;
+  top:20px;
+}
+
+.tick:hover:after{
+  color:#83d244;
+  text-shadow:0px 0px 6px #83d244;
+}
+
+.button:hover{
+  background-image: -webkit-linear-gradient(top, #fff, #f4f1ee);
+  background-image: linear-gradient(top, #fff, #f4f1ee);
+  color:#0088cc;
+}
+
+.button:active{
+  background-image: -webkit-linear-gradient(top, #efedec, #f7f4f4);
+  background-image: linear-gradient(top, #efedec, #f7f4f4);
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,.4), inset 0px -3px 1px 1px rgba(204,198,197,.5);
+}
+
+.button:active:after{
+  color:#dbd2d2;
+  text-shadow: 0px -1px 1px #bdb5b4, 0px 1px 1px white;
+}*/
+
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////*/
+
+.serie-btn-to-see {
+  margin: 10px 0;
+  background-color: #0e209a;
+  border-color: #0e209a;
+}
+
+.serie-btn-to-see:hover {
+  background-color: #2243f1;
+  border-color: #2243f1;
 }
 
 .serie-btn-serie-saw {
-    background-color: #0e9a39;
-    border-color: #0e9a39;
+  margin: 10px 0;
+  background-color: #0e9a39;
+  border-color: #0e9a39;
 }
 
-.serie-btn-serie-saw {
-    background-color: #06ab52;
-    border-color: #06ab52;
+.serie-btn-serie-saw:hover {
+  background-color: #06ab52;
+  border-color: #06ab52;
 }
 
 .serie-btn-delete {
-    background-color: #d86e3c;
-    border-color: #d86e3c;
+  background-color: #d86e3c;
+  border-color: #d86e3c;
 }
 
 .serie-btn-delete:hover {
-    background-color: #ff612c;
-    border-color: #ff612c;
+  background-color: #ff612c;
+  border-color: #ff612c;
 }

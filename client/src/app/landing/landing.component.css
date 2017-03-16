@@ -27,11 +27,30 @@
   transform: translate(-50%, -50%);
 }
 .home-heading-wrapper > h2 {
-  font-size: 4rem;
+  padding-top:40px;
+  font-size: 3rem;
   color: #FFF;
 }
 
+.home-heading-wrapper > p {
+  padding-top: 20px;
+  font-size: 1.7rem;
+  line-height: 3rem;
+  color: #FFF;
+
+}
+
 .home-heading-wrapper > h3 {
+  padding-top:20px;
   font-size: 2rem;
   color: #FFF;
+}
+
+h4 {
+  padding: 20px;
+}
+
+.landing-info{
+  color: #ff612c;
+  padding: 50px;
 }

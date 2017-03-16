@@ -15,7 +15,7 @@ import { Observable } from 'rxjs/Rx';
 export class ProfileComponent implements OnInit {
   private user: any;
   private seriesList: any;
-  private options: any;
+  private seriesSavedDB: any;
   private error: string;
   private serie: any;
 
@@ -29,38 +29,40 @@ export class ProfileComponent implements OnInit {
       this.user = user;
       return this.seriesService.getList(user._id)
     })
-    .map((list) => list.map((o) => {this.options = o ; return o.serieId}))
+    .map((list) => {
+      this.seriesSavedDB = list;
+      return list.map((o) => {return o.serieId})
+    })
     .flatMap((idList)=> Observable.forkJoin(idList.map((id) => this.seriesService.getSerieDetails(id))))
     .subscribe((seriesListProcessed) => {
       // console.log(seriesListProcessed);
+      seriesListProcessed.map((serie:any) => {
+        var match = this.seriesSavedDB.find((serieDB) => parseInt(serieDB.serieId) == serie.id);
+        if(match != undefined){
+          // Add database attributes to serie from external provider
+          serie.isView = match.isView;
+          serie.databaseID = match._id;
+        }
+        return serie;
+      })
+
       this.seriesList = seriesListProcessed;
     });
-
-    // this.session.isLoggedIn()
-    // .flatMap((user) => {
-    //   this.user = user;
-    //   return this.seriesService.getList(user._id)
-    // })
-    // .map((list) => list.map((o) => o.serieId))
-    // .flatMap((idList)=> Observable.forkJoin(idList.map((id) => this.seriesService.getSerieDetails(id))))
-    // .subscribe((seriesListProcessed) => {
-    //   console.log(seriesListProcessed);
-    //   this.seriesList = seriesListProcessed;
-    // });
-
-
-    /*this.seriesService.getList
-      .subscribe((list) => {
-        console.log(list);
-        this.list = list;
-        //this.showSeries();
-      });*/
   }
 
-  deleteToMyList(serieId,userId) {
-    this.seriesService.deleteMySerie(serieId,userId)
+  addToMyList(databaseID){
+    console.log(`Adding to database: ${databaseID}`);
+  }
+
+  deleteToMyList(databaseID) {
+    console.log(`Deleting to database: ${databaseID}`);
+    console.log(databaseID);
+    this.seriesService.deleteMySerie(databaseID)
       .subscribe(
-        response => this.router.navigate(['home']),
+        response => {
+          var index = this.seriesList.findIndex((serie) => serie.databaseID == databaseID);
+          this.seriesList.splice(index,1);
+        },
         (err) => this.errorCb(err)
       );
   }
@@ -68,34 +70,4 @@ export class ProfileComponent implements OnInit {
   errorCb(err) {
     this.error = err;
   }
-
-  // successCb(serie) {
-  //   this.serie = serie;
-  //   this.error = null;
-  //   this.router.navigate(['home']);
-  //
-  //   // this.router.navigate(['home']);
-  // }
-
-  /*showSeries(){
-    for(let i = 0; i < this.list.length;i++){
-      return this.seriesService.getSerieDetails(this.list[i].serieId)
-         .subscribe(result => this.seriesList = result)
-    };
-  }*/
-
-  // showSeries(){
-  //   for(let i = 0; i < this.list.length;i++){
-  //     this.seriesUser.push(this.seriesService.getSerieDetails(this.list[i].serieId));
-  //       //  .subscribe(result => this.seriesList = result)
-  //   };
-  //
-  //   this.seriesUser.subscribe(result => this.seriesList = result)
-  //   // this.list.forEach((serie)=>{
-  //   //   this.seriesService.getSerieDetails(this.list.serieId)
-  //   //      .subscribe(result => this.serie = result)
-  //   // });
-  // }
-
-
 }

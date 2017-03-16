@@ -41,6 +41,22 @@
   background-color: inherit;
   border: inherit;
   border-radius: inherit;
+  opacity: 0.7;
+  -webkit-box-reflect: below 0px
+  -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent) , to(rgba(250, 250, 250, 0.1)));
+}
+
+.poster-img:hover{
+  opacity: 1;
+  border: 1px ridge #d86e3c;
+  box-sizing: border-box;
+}
+
+.poster-img{
+  height: 390px;
+  background-color: inherit;
+  border: inherit;
+  border-radius: inherit;
   -webkit-box-reflect: below 0px
   -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent) , to(rgba(250, 250, 250, 0.1)));
 }
