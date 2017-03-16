@@ -4,8 +4,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { environment} from '../environments/environment';
 
-const baseURL = "http://localhost:3000"
+const baseURL = environment.apiUrl
 // const baseURL = ""
 
 @Injectable()
