@@ -35,9 +35,8 @@ export class ProfileComponent implements OnInit {
     })
     .flatMap((idList)=> Observable.forkJoin(idList.map((id) => this.seriesService.getSerieDetails(id))))
     .subscribe((seriesListProcessed) => {
-      // console.log(seriesListProcessed);
       seriesListProcessed.map((serie:any) => {
-        var match = this.seriesSavedDB.find((serieDB) => parseInt(serieDB.serieId) == serie.id);
+        const match = this.seriesSavedDB.find((serieDB) => parseInt(serieDB.serieId) == serie.id);
         if(match != undefined){
           // Add database attributes to serie from external provider
           serie.isView = match.isView;
@@ -47,16 +46,31 @@ export class ProfileComponent implements OnInit {
       })
 
       this.seriesList = seriesListProcessed;
+      console.log(this.seriesList);
     });
   }
 
   addToMyList(databaseID){
-    console.log(`Adding to database: ${databaseID}`);
+  }
+
+  isSerieSaw(serie){
+    this.seriesService.isSerieSaw(serie)
+      .subscribe(
+        response => {
+          this.seriesList.findIndex((serie) => serie.databaseID == serie.databaseID);
+          if (serie.isView === false) {
+            serie.isView = true;
+          } else {
+            serie.isView = false;
+          }
+          // const index = this.seriesList.findIndex((serie) => serie.databaseID == databaseID);
+        },
+        (err) => this.errorCb(err)
+      );
+
   }
 
   deleteToMyList(databaseID) {
-    console.log(`Deleting to database: ${databaseID}`);
-    console.log(databaseID);
     this.seriesService.deleteMySerie(databaseID)
       .subscribe(
         response => {

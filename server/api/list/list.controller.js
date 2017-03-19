@@ -1,6 +1,5 @@
 const express = require("express");
 const listController = express.Router();
-// Our user model
 const List = require("./list.model");
 
 listController.post("/list", (req, res, next) => {
@@ -10,7 +9,6 @@ listController.post("/list", (req, res, next) => {
     userId,
     serieId
   });
-
   newList.save((err) => {
     if (err) {
       res.status(400).json({
@@ -36,8 +34,32 @@ listController.get("/list/:userId", (req, res, next) => {
   });
 });
 
+listController.put('/list/:id', (req, res, next) => {
+  const relationId = req.params.id;
+  const serieId = req.body.id;
+  let isView = req.body.isView;
+  if (isView === false) {
+    isView = true;
+  } else {
+    isView = false;
+  }
+  List.findByIdAndUpdate(relationId, {
+    serieId,
+    isView
+  }, (err) => {
+    if (err) {
+      res.status(400).json({
+        message: "Something went wrong"
+      });
+    } else {
+      res.status(200).json({
+        message: "updated ok"
+      });
+    }
+  });
+});
+
 listController.delete('/list/:id', (req, res, next) => {
-  console.log("pasa por aqui");
   const relationId = req.params.id;
   List.findByIdAndRemove(relationId, (err) => {
     if (err) {
@@ -50,19 +72,6 @@ listController.delete('/list/:id', (req, res, next) => {
       });
     }
   });
-
 });
-
-
-// listController.get("/list/:id", (req, res, next) => {
-//   console.log("pasa por aqui 1");
-//   List.find({}, (err, series) => {
-//     if (err) {
-//       return res.json(err).status(500);
-//     }
-//     console.log("Sii! p.por aqui" + series);
-//     return res.json(series);
-//   });
-// });
 
 module.exports = listController;

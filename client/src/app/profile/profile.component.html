@@ -10,9 +10,13 @@
   </header>
   <div class="row" *ngIf="seriesList" class="serie-list">
     <div *ngFor="let serie of seriesList" class="col-xs-12 text-center serie-element">
-      <div class="col-md-4 col-xs-12 text-center">
+      <div *ngIf="serie.isView === false" class="col-md-4 col-xs-12 text-center">
         <img *ngIf="serie.poster_path" class="img-thumbnail poster-img" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
         <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img" src="https://www.clapsnslaps.com/assets/images/noposter1.jpg">
+      </div>
+      <div *ngIf="serie.isView === true" class="col-md-4 col-xs-12 text-center">
+        <img *ngIf="serie.poster_path" class="img-thumbnail poster-img-view" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}">
+        <img *ngIf="!serie.poster_path" class="img-thumbnail poster-img-view" src="https://www.clapsnslaps.com/assets/images/noposter1.jpg">
       </div>
       <div class="col-md-6 col-xs-12 text-center">
         <h4 class="text-center serie-name">{{serie.name}}</h4>
@@ -26,10 +30,6 @@
           <li class="list-group-item serie-info">
             <strong>Status: </strong> {{serie.status}}
           </li>
-          <!-- <li class="list-group-item serie-info">
-            <strong>Overview:</strong> {{serie.overview}}
-          </li> -->
-
           <li class="list-group-item serie-info">
             <strong>Genres:</strong> <span *ngFor="let gen of serie.genres">{{gen.name}} </span>
           </li>
@@ -37,23 +37,11 @@
           <li class="list-group-item serie-info">
             <strong>Rating:</strong> {{serie.vote_average}}
           </li>
-          <button *ngIf="serie.isView === false" class="btn serie-btn-to-see btn-block" (click)="notSerieSaw(serie.databaseID)">Pending to See</button>
-          <button *ngIf="serie.isView === true" class="btn serie-btn-serie-saw btn-block" (click)="serieSaw(serie.databaseID)">Already Saw</button>
-          <button class="btn serie-btn-delete btn-block" (click)="deleteToMyList(serie.databaseID)">Delete It</button>
+          <i *ngIf="serie.isView === false" class="fa fa-eye-slash fa-3x serie-no-view" aria-hidden="true" (click)="isSerieSaw(serie)"></i>
+          <i *ngIf="serie.isView === true" class="fa fa-eye fa-3x serie-view" aria-hidden="true" (click)="isSerieSaw(serie)"></i>
+          <i class="fa fa-trash fa-3x serie-delete" aria-hidden="true" (click)="deleteToMyList(serie.databaseID)"></i>
         </ul>
       </div>
-      <!-- <section class="col-xs-12">
-          <ul *ngFor="let episodes of serie.seasons" class="list-group-item serie-info col-md-1 col-sm-2 col-xs-6 text-center">
-            <img *ngIf="episodes.poster_path" class="img-thumbnail poster-season-img" src="https://image.tmdb.org/t/p/w300/{{episodes.poster_path}}">
-            <img *ngIf="!episodes.poster_path" class="img-thumbnail poster-season-img" src="https://www.clapsnslaps.com/assets/images/noposter1.jpg">
-            <li class="list-group-item serie-info">
-              <strong>Season: </strong> {{episodes.season_number}}
-            </li>
-            <li class="list-group-item serie-info">
-              <strong>Episodes: </strong> {{episodes.episode_count}}
-            </li>
-          </ul>
-      </section> -->
     </div>
   </div>
 </section>

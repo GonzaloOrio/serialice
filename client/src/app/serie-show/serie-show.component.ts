@@ -13,9 +13,9 @@ import {Router, ActivatedRoute} from '@angular/router'
 export class SerieShowComponent implements OnInit {
   private similarSeries: Array<Object> = [];
   private serie: any = {};
-  // private serieId: String;
+  private serieSeason: any = [];
   private user: any = {};
-  private season: any = {};
+  // private season: any = {};
   private list: any;
   private error: string;
 
@@ -25,24 +25,25 @@ export class SerieShowComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private loggedin: LoggedinService) {
-        this.user = loggedin.getUser();
+        // this.user = loggedin.getUser();
     }
 
   ngOnInit() {
-    // this.sessionService.isLoggedIn()
-    //  .subscribe(
-    //    (user) => this.successCb(user)
-    //  );
-
-    // this.route.params
-    //   .subscribe((params)=> {
-    //     this.serieId = params['id'];
-    //   });
+    this.sessionService.isLoggedIn()
+     .subscribe(
+       (user) => this.successCb(user),
+       (err) => this.errorCb(err)
+     );
 
     this.route.params
       .map(params => params['id'])
       .switchMap(id => this.seriesService.getSerieDetails(id))
       .subscribe(result => this.serie = result);
+
+    // this.route.params
+    //   .map(params => params['id'])
+    //   .switchMap((id,season) => this.seriesService.getSerieSeasonDetails(id,season))
+    //   .subscribe(result => this.serieSeason = result);
 
     this.route.params
       .map(params => params['id'])
@@ -59,8 +60,8 @@ export class SerieShowComponent implements OnInit {
   addToMyList() {
     this.seriesService.addToList(this.user._id,this.serie.id)
       .subscribe(
-        (list) => this.successCb(list),
-        (err) => this.errorCb(err)
+        (list) => this.successAddCb(list),
+        (err) => this.errorAddCb(err)
       );
   }
 
@@ -69,11 +70,20 @@ export class SerieShowComponent implements OnInit {
     this.list = null;
   }
 
-  successCb(list) {
+  successCb(user) {
+    this.user = user;
+    this.error = null;
+  }
+
+  errorAddCb(err) {
+    this.error = err;
+    this.list = null;
+    this.router.navigate(['']);
+  }
+
+  successAddCb(list) {
     this.list = list;
     this.error = null;
     this.router.navigate(['profile']);
-
-    // this.router.navigate(['home']);
   }
 }

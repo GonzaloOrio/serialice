@@ -7,17 +7,18 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { environment} from '../environments/environment';
 
 const baseURL = environment.apiUrl
-// const baseURL = ""
 
 @Injectable()
 export class SeriesService {
   private apikey: string = '15e2ef2c6a55de911f80c81d7448459a';
   private baseUrl: string = 'https://api.themoviedb.org/3/';
   private serie: string = 'tv/'
-  private sortByPopularity = '&sort_by=popularity.desc';
+  private sortByPopularity: string = '&sort_by=popularity.desc';
   private sharedSearchResult: Array<Object> = [];
 
   constructor(private http: Http) { }
+
+  //API TMDB Functions
 
   public getSharedSearchResult() {
     return this.sharedSearchResult;
@@ -58,7 +59,7 @@ export class SeriesService {
   }
 
   // public getSerieSeasonDetails(id,season) {
-  //   return this.http.get(this.baseUrl + this.serie + id + '/season/' + season + '?'+this.apikey)
+  //   return this.http.get(this.baseUrl + this.serie + id + '/season/'+ season + '?api_key=' +this.apikey)
   //     .map(result => result.json())
   // }
 
@@ -76,18 +77,18 @@ export class SeriesService {
 
   public sharedSearchSeries(searchQuery) {
     this.searchSeries(searchQuery)
-      .subscribe(response => {
+      .subscribe(response =>{
         this.sharedSearchResult = response.results;
       })
   }
 
-  //DataBase Functions
-
-  public handleError(e) {
+  public handleError(e){
     return Observable.throw(e.json().message);
   }
 
-  public addToList(userId,serieId) {
+  //DataBase Functions
+
+  public addToList(userId,serieId){
     return this.http.post(`${baseURL}/list`, {data:{userId:userId,serieId:serieId}})
       .map(res => res.json())
       .catch(this.handleError);
@@ -99,7 +100,13 @@ export class SeriesService {
       .catch(this.handleError);
   }
 
-  public deleteMySerie(databaseID) {
+  public isSerieSaw(serie){
+    return this.http.put(`${baseURL}/list/${serie.databaseID}`,serie)
+      .map((res) => res.json())
+      .catch((err) => Observable.throw(err.json()));
+  }
+
+  public deleteMySerie(databaseID){
     return this.http.delete(`${baseURL}/list/${databaseID}`)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
