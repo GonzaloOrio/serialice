@@ -6,11 +6,12 @@ import { Observable } from 'rxjs/Rx';
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { environment} from '../environments/environment';
 
-const BASEURL = environment.apiUrl
+const BASEURL = environment.apiUrl;
+const apiKey = environment.apiTMDB;
 
 @Injectable()
 export class SeriesService {
-  private apikey: string = '15e2ef2c6a55de911f80c81d7448459a';
+  private apikey: string = apiKey;
   private baseUrl: string = 'https://api.themoviedb.org/3/';
   private serie: string = 'tv/'
   private sortByPopularity: string = '&sort_by=popularity.desc';

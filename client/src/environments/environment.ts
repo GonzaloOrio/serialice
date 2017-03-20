@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl:"http://localhost:3000"
+  apiUrl:"http://localhost:3000",
+  apiTMDB:"15e2ef2c6a55de911f80c81d7448459a"
 };
