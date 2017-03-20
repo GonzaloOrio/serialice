@@ -2,16 +2,16 @@ const express = require("express");
 const userController = express.Router();
 const passport = require("passport");
 
-// Our user model
 const User = require("./user.model");
 
 // Bcrypt let us encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+// signup an user
 userController.post("/signup", (req, res, next) => {
-  var username = req.body.username;
-  var password = req.body.password;
+  let username = req.body.username;
+  let password = req.body.password;
 
   if (!username || !password) {
     res.status(400).json({
@@ -19,7 +19,6 @@ userController.post("/signup", (req, res, next) => {
     });
     return;
   }
-
   User.findOne({
     username
   }, "username", (err, user) => {
@@ -29,15 +28,13 @@ userController.post("/signup", (req, res, next) => {
       });
       return;
     }
+    let salt = bcrypt.genSaltSync(bcryptSalt);
+    let hashPass = bcrypt.hashSync(password, salt);
 
-    var salt = bcrypt.genSaltSync(bcryptSalt);
-    var hashPass = bcrypt.hashSync(password, salt);
-
-    var newUser = User({
+    let newUser = User({
       username,
       password: hashPass
     });
-
     newUser.save((err) => {
       if (err) {
         res.status(400).json({
@@ -57,16 +54,15 @@ userController.post("/signup", (req, res, next) => {
   });
 });
 
+// login an user
 userController.post("/login", function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) {
       return next(err);
     }
-
     if (!user) {
       return res.status(401).json(info);
     }
-
     req.login(user, function(err) {
       if (err) {
         return res.status(500).json({
@@ -78,6 +74,7 @@ userController.post("/login", function(req, res, next) {
   })(req, res, next);
 });
 
+// logout an user
 userController.post("/logout", function(req, res) {
   req.logout();
   res.status(200).json({
@@ -85,11 +82,11 @@ userController.post("/logout", function(req, res) {
   });
 });
 
+// check the status of the user
 userController.get("/loggedin", function(req, res) {
   if (req.isAuthenticated()) {
     return res.status(200).json(req.user);
   }
-
   return res.status(403).json({
     message: 'Unauthorized'
   });

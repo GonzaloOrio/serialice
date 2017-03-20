@@ -2,6 +2,7 @@ const express = require("express");
 const listController = express.Router();
 const List = require("./list.model");
 
+// create relation by series and user
 listController.post("/list", (req, res, next) => {
   const userId = req.body.data.userId;
   const serieId = req.body.data.serieId;
@@ -22,6 +23,7 @@ listController.post("/list", (req, res, next) => {
   });
 });
 
+// get list of series for each user
 listController.get("/list/:userId", (req, res, next) => {
   const userId = req.params.userId;
   List.find({
@@ -34,6 +36,7 @@ listController.get("/list/:userId", (req, res, next) => {
   });
 });
 
+// change state of view of the user's series
 listController.put('/list/:id', (req, res, next) => {
   const relationId = req.params.id;
   const serieId = req.body.id;
@@ -59,6 +62,7 @@ listController.put('/list/:id', (req, res, next) => {
   });
 });
 
+// delete the choosen serie of the user's series
 listController.delete('/list/:id', (req, res, next) => {
   const relationId = req.params.id;
   List.findByIdAndRemove(relationId, (err) => {

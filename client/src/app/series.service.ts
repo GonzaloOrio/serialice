@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Rx';
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { environment} from '../environments/environment';
 
-const baseURL = environment.apiUrl
+const BASEURL = environment.apiUrl
 
 @Injectable()
 export class SeriesService {
@@ -14,100 +14,95 @@ export class SeriesService {
   private baseUrl: string = 'https://api.themoviedb.org/3/';
   private serie: string = 'tv/'
   private sortByPopularity: string = '&sort_by=popularity.desc';
-  private sharedSearchResult: Array<Object> = [];
+  private sharedSearchResult: Object[];
 
   constructor(private http: Http) { }
 
   //API TMDB Functions
 
-  public getSharedSearchResult() {
+  getSharedSearchResult(): Object[] {
     return this.sharedSearchResult;
   }
 
-  public setSharedSearchResult(searchResult) {
+  setSharedSearchResult(searchResult:any):void {
     this.sharedSearchResult = searchResult;
   }
 
-  public getPopularSeries() {
-    return this.http.get(this.baseUrl + this.serie + 'popular?api_key=' + this.apikey)
+  getPopularSeries():Observable<any> {
+    return this.http.get(`${this.baseUrl}${this.serie}popular?api_key=${this.apikey}`)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
-  public getTopRatedSeries() {
-    return this.http.get(this.baseUrl + this.serie + 'top_rated?api_key=' + this.apikey)
+  getTopRatedSeries():Observable<any> {
+    return this.http.get(`${this.baseUrl}${this.serie}top_rated?api_key=${this.apikey}`)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
-  public getNowPlayingSeries() {
-    return this.http.get(this.baseUrl + this.serie + 'on_the_air?api_key=' + this.apikey)
+  getNowPlayingSeries():Observable<any> {
+    return this.http.get(`${this.baseUrl}${this.serie}on_the_air?api_key=${this.apikey}`)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
-  public searchSeries(query) {
-    return this.http.get(this.baseUrl + 'search/tv?api_key='+ this.apikey + '&query=' + query + this.sortByPopularity)
+  searchSeries(query:any): Observable<any> {
+    return this.http.get(`${this.baseUrl}search/tv?api_key=${this.apikey}&query=${query}${this.sortByPopularity}`)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
-  public getSerieDetails(id) {
-    return this.http.get(this.baseUrl + this.serie + id + '?api_key='+this.apikey)
+  getSerieDetails(id:any): Observable<any> {
+    return this.http.get(`${this.baseUrl}${this.serie}${id}?api_key=${this.apikey}`)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
-  // public getSerieSeasonDetails(id,season) {
-  //   return this.http.get(this.baseUrl + this.serie + id + '/season/'+ season + '?api_key=' +this.apikey)
-  //     .map(result => result.json())
-  // }
-
-  public getSimilarSeries(id) {
-    return this.http.get(this.baseUrl + this.serie +  id + '/similar?api_key=' + this.apikey)
+  getSimilarSeries(id:any): Observable<any> {
+    return this.http.get(`${this.baseUrl}${this.serie}${id}/similar?api_key=${this.apikey}`)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
-  public getSerieReviews(id) {
-    return this.http.get(this.baseUrl + this.serie + id + '/reviews?api_key=' + this.apikey)
+  getSerieReviews(id:any): Observable<any> {
+    return this.http.get(`${this.baseUrl}${this.serie}${id}/reviews?api_key=${this.apikey}`)
       .map(result => result.json())
       .catch(this.handleError);
   }
 
-  public sharedSearchSeries(searchQuery) {
+  sharedSearchSeries(searchQuery:any):void {
     this.searchSeries(searchQuery)
       .subscribe(response =>{
         this.sharedSearchResult = response.results;
       })
   }
 
-  public handleError(e){
+  handleError(e:any){
     return Observable.throw(e.json().message);
   }
 
   //DataBase Functions
 
-  public addToList(userId,serieId){
-    return this.http.post(`${baseURL}/list`, {data:{userId:userId,serieId:serieId}})
+  addToList(userId:any,serieId:any): Observable<any>{
+    return this.http.post(`${BASEURL}/list`, {data:{userId:userId,serieId:serieId}})
       .map(res => res.json())
       .catch(this.handleError);
   }
 
-  public getList(userId){
-    return this.http.get(`${baseURL}/list/${userId}`)
+  getList(userId:any): Observable<any>{
+    return this.http.get(`${BASEURL}/list/${userId}`)
       .map((result) => result.json())
       .catch(this.handleError);
   }
 
-  public isSerieSaw(serie){
-    return this.http.put(`${baseURL}/list/${serie.databaseID}`,serie)
+  isSerieSaw(serie:any): Observable<any>{
+    return this.http.put(`${BASEURL}/list/${serie.databaseID}`,serie)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
   }
 
-  public deleteMySerie(databaseID){
-    return this.http.delete(`${baseURL}/list/${databaseID}`)
+  deleteMySerie(databaseID:any): Observable<any>{
+    return this.http.delete(`${BASEURL}/list/${databaseID}`)
       .map((res) => res.json())
       .catch((err) => Observable.throw(err.json()));
   }

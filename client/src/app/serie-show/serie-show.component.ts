@@ -13,9 +13,8 @@ import {Router, ActivatedRoute} from '@angular/router'
 export class SerieShowComponent implements OnInit {
   private similarSeries: Array<Object> = [];
   private serie: any = {};
-  private serieSeason: any = [];
+  private serieSeason: any;
   private user: any = {};
-  // private season: any = {};
   private list: any;
   private error: string;
 
@@ -25,25 +24,19 @@ export class SerieShowComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private loggedin: LoggedinService) {
-        // this.user = loggedin.getUser();
     }
 
   ngOnInit() {
     this.sessionService.isLoggedIn()
      .subscribe(
-       (user) => this.successCb(user),
-       (err) => this.errorCb(err)
+       (user:any) => this.successCb(user),
+       (err:any) => this.errorCb(err)
      );
 
     this.route.params
       .map(params => params['id'])
       .switchMap(id => this.seriesService.getSerieDetails(id))
       .subscribe(result => this.serie = result);
-
-    // this.route.params
-    //   .map(params => params['id'])
-    //   .switchMap((id,season) => this.seriesService.getSerieSeasonDetails(id,season))
-    //   .subscribe(result => this.serieSeason = result);
 
     this.route.params
       .map(params => params['id'])
@@ -57,7 +50,7 @@ export class SerieShowComponent implements OnInit {
     this.seriesService.setSharedSearchResult([]);
   }
 
-  addToMyList() {
+  addToMyList():void {
     this.seriesService.addToList(this.user._id,this.serie.id)
       .subscribe(
         (list) => this.successAddCb(list),
@@ -65,23 +58,23 @@ export class SerieShowComponent implements OnInit {
       );
   }
 
-  errorCb(err) {
+  errorCb(err):any {
     this.error = err;
     this.list = null;
   }
 
-  successCb(user) {
+  successCb(user:any):void {
     this.user = user;
     this.error = null;
   }
 
-  errorAddCb(err) {
+  errorAddCb(err:any):void {
     this.error = err;
     this.list = null;
     this.router.navigate(['']);
   }
 
-  successAddCb(list) {
+  successAddCb(list:any):void {
     this.list = list;
     this.error = null;
     this.router.navigate(['profile']);

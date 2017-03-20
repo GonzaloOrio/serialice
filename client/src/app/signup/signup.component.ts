@@ -19,23 +19,22 @@ export class SignupComponent implements OnInit {
 
   constructor(private session: UserSessionService, private router: Router, private loggedin: LoggedinService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  signup() {
+  signup():void {
     this.session.signup(this.formInfo)
       .subscribe(
-        (user) => this.successCb(user),
-        (err) => this.errorCb(err)
+        (user:any) => this.successCb(user),
+        (err:any) => this.errorCb(err)
       );
   }
 
-  errorCb(err) {
+  errorCb(err:any):void {
     this.error = err;
     this.user = null;
   }
 
-  successCb(user) {
+  successCb(user:any):void {
     this.user = user;
     this.loggedin.checkLogged(user);
     this.error = null;

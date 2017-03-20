@@ -5,26 +5,25 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-// const index = require('./routes/index');
-// const users = require('./routes/users');
+
 const userController = require("./api/user/user.controller");
 const listController = require("./api/list/list.controller");
-// const routes = require('./routes/index');
+
 const session = require("express-session");
 const passport = require("passport");
 require('./config/passport')(passport);
 require("dotenv").config();
 
 const mongoose = require("mongoose");
-// mongoose.connect(process.env.MONGODB_URI);
-mongoose.connect("mongodb://localhost/serailDB");
+mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect("mongodb://localhost/inpauseDB");
 
 const app = express();
 
-var whitelist = [
+let whitelist = [
   'http://localhost:4200',
 ];
-var corsOptions = {
+let corsOptions = {
   origin: function(origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
     callback(null, originIsWhitelisted);
@@ -33,12 +32,9 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use(session({
   secret: "serial-ice-strategy",
@@ -61,14 +57,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use('/', index);
-// app.use('/users', users);
 app.use('/', userController);
 app.use('/', listController);
-// app.use('/', routes)(app);
-// require('./routes')(app);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

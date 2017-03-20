@@ -6,13 +6,11 @@ import { Observable } from 'rxjs/Rx';
 import { environment} from '../environments/environment';
 
 const baseURL = environment.apiUrl
-// const baseURL = ""
-
 
 @Injectable()
 export class UserSessionService {
 
-constructor(private http: Http) { }
+  constructor(private http: Http) { }
 
   handleError(e) {
     return Observable.throw(e.json().message);
@@ -42,5 +40,4 @@ constructor(private http: Http) { }
       .map(res => res.json())
       .catch((err) => this.handleError(err));
   }
-
 }

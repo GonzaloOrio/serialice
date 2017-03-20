@@ -9,6 +9,7 @@ import { LoggedinService } from '../loggedin.service';
   styleUrls: ['./header.component.css'],
   providers: [UserSessionService]
 })
+
 export class HeaderComponent implements OnInit {
   user: any;
   error: string;
@@ -23,7 +24,7 @@ export class HeaderComponent implements OnInit {
      );
   }
 
-  logout() {
+  logout():void {
     this.session.logout()
       .subscribe(
        () => this.logOutSucess(null),
@@ -31,22 +32,20 @@ export class HeaderComponent implements OnInit {
      );
   }
 
-  errorCb(err) {
+  errorCb(err:any):void {
     this.error = err;
     this.user = null;
   }
 
-  successCb(user) {
-  this.user = user;
-  this.loggedin.checkLogged(user);
-  this.error = null;
+  successCb(user:any):void {
+    this.user = user;
+    this.loggedin.checkLogged(user);
+    this.error = null;
   }
 
-  logOutSucess(user) {
-  this.loggedin.checkLogged(null);
-  this.router.navigate([''])
-  this.user = null;
-}
-
-
+  logOutSucess(user:any):void {
+    this.loggedin.checkLogged(null);
+    this.router.navigate([''])
+    this.user = null;
+  }
 }

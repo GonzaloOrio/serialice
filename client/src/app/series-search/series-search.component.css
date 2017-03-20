@@ -1,18 +1,14 @@
 .close-search-container{
   top: -120px;
   position: relative;
-  /*float: right;*/
 }
 
 .close-search{
-  /*position: relative;*/
   color: #1b1b1b;
   margin: 0 auto 50px auto;
   padding: 8px;
-  /*top: -120px;*/
   border-radius: 50%;
   background-color: #d86e3c;
-  /*z-index: 0;*/
 }
 
 .close-search:hover{

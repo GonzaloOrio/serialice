@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  login() {
+  login():void {
     this.session.login(this.formInfo)
       .subscribe(
         (user) => this.successCb(user),
@@ -29,15 +29,15 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  errorCb(err) {
+  errorCb(err:any):void {
     this.error = err;
     this.user = null;
   }
 
-  successCb(user) {
+  successCb(user:any):void {
     this.user = user;
     this.loggedin.checkLogged(user);
     this.error = null;
     this.router.navigate(['home']);
   }
-  }
+}

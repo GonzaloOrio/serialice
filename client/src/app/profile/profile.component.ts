@@ -33,27 +33,21 @@ export class ProfileComponent implements OnInit {
       this.seriesSavedDB = list;
       return list.map((o) => {return o.serieId})
     })
-    .flatMap((idList)=> Observable.forkJoin(idList.map((id) => this.seriesService.getSerieDetails(id))))
+    .flatMap((idList) => Observable.forkJoin(idList.map((id) => this.seriesService.getSerieDetails(id))))
     .subscribe((seriesListProcessed) => {
       seriesListProcessed.map((serie:any) => {
-        const match = this.seriesSavedDB.find((serieDB) => parseInt(serieDB.serieId) == serie.id);
+        let match = this.seriesSavedDB.find((serieDB) => parseInt(serieDB.serieId) == serie.id);
         if(match != undefined){
-          // Add database attributes to serie from external provider
           serie.isView = match.isView;
           serie.databaseID = match._id;
         }
         return serie;
       })
-
       this.seriesList = seriesListProcessed;
-      console.log(this.seriesList);
     });
   }
 
-  addToMyList(databaseID){
-  }
-
-  isSerieSaw(serie){
+  isSerieSaw(serie:any):void{
     this.seriesService.isSerieSaw(serie)
       .subscribe(
         response => {
@@ -63,14 +57,12 @@ export class ProfileComponent implements OnInit {
           } else {
             serie.isView = false;
           }
-          // const index = this.seriesList.findIndex((serie) => serie.databaseID == databaseID);
         },
         (err) => this.errorCb(err)
       );
-
   }
 
-  deleteToMyList(databaseID) {
+  deleteToMyList(databaseID:any):void{
     this.seriesService.deleteMySerie(databaseID)
       .subscribe(
         response => {
@@ -81,7 +73,7 @@ export class ProfileComponent implements OnInit {
       );
   }
 
-  errorCb(err) {
+  errorCb(err:any):void {
     this.error = err;
   }
 }

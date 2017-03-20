@@ -13,8 +13,7 @@ export class SeriesSearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  public removeSearchResults() {
+  removeSearchResults():void {
     this.seriesService.setSharedSearchResult([]);
   }
-
 }
