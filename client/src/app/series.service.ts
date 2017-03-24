@@ -83,7 +83,6 @@ export class SeriesService {
   }
 
   //DataBase Functions
-
   addToList(userId:any,serieId:any): Observable<any>{
     return this.http.post(`${BASEURL}/list`, {data:{userId:userId,serieId:serieId}})
       .map(res => res.json())
